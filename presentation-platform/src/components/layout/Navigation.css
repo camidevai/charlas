@@ -1,0 +1,197 @@
+.navigation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(79, 195, 247, 0.2);
+  box-shadow: 0 2px 20px rgba(79, 195, 247, 0.1);
+  transition: all 0.3s ease;
+}
+
+.navigation.presentation-mode {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 2rem;
+}
+
+/* Logo/Marca */
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: var(--text-accent);
+  min-width: 200px;
+}
+
+.nav-brand svg {
+  color: var(--calypso-blue);
+}
+
+/* Indicador de progreso */
+.progress-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 200px;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 6px;
+  background: rgba(79, 195, 247, 0.2);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--calypso-blue) 0%, var(--pink) 100%);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  min-width: 50px;
+  text-align: center;
+}
+
+/* Navegación por secciones */
+.section-nav {
+  display: flex;
+  gap: 0.5rem;
+  flex: 1;
+  justify-content: center;
+}
+
+.section-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.section-btn:hover {
+  background: rgba(79, 195, 247, 0.1);
+  color: var(--calypso-blue-dark);
+}
+
+.section-btn.active {
+  background: linear-gradient(135deg, var(--calypso-blue) 0%, var(--pink) 100%);
+  color: white;
+  box-shadow: var(--shadow-soft);
+}
+
+/* Controles de presentación */
+.presentation-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 200px;
+  justify-content: flex-end;
+}
+
+.control-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  background: rgba(79, 195, 247, 0.1);
+  color: var(--calypso-blue-dark);
+}
+
+.control-btn:hover:not(:disabled) {
+  background: rgba(79, 195, 247, 0.2);
+  transform: translateY(-1px);
+}
+
+.control-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.control-btn.present {
+  background: linear-gradient(135deg, var(--calypso-blue) 0%, var(--pink) 100%);
+  color: white;
+  box-shadow: var(--shadow-soft);
+}
+
+.control-btn.present:hover {
+  box-shadow: var(--shadow-hover);
+  background: linear-gradient(135deg, var(--calypso-blue-dark) 0%, var(--pink-dark) 100%);
+}
+
+.control-btn.present.active {
+  background: linear-gradient(135deg, var(--pink) 0%, var(--calypso-blue) 100%);
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+  .section-nav {
+    display: none;
+  }
+  
+  .nav-container {
+    gap: 1rem;
+  }
+  
+  .nav-brand,
+  .progress-container,
+  .presentation-controls {
+    min-width: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 0.8rem 1rem;
+    gap: 0.5rem;
+  }
+  
+  .nav-brand span {
+    display: none;
+  }
+  
+  .progress-container {
+    flex: 1;
+  }
+  
+  .control-btn span {
+    display: none;
+  }
+  
+  .control-btn {
+    padding: 0.5rem;
+    min-width: 40px;
+    justify-content: center;
+  }
+}

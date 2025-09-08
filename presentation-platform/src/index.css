@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Paleta de colores pastel - Azul Calipso y Rosa */
+  --calypso-blue-light: #E8F4FD;
+  --calypso-blue: #4FC3F7;
+  --calypso-blue-dark: #29B6F6;
+  --pink-light: #FCE4EC;
+  --pink: #F48FB1;
+  --pink-dark: #EC407A;
+
+  /* Colores de fondo pastel */
+  --bg-primary: linear-gradient(135deg, #E8F4FD 0%, #FCE4EC 100%);
+  --bg-secondary: linear-gradient(135deg, #F3E5F5 0%, #E1F5FE 100%);
+  --bg-card: rgba(255, 255, 255, 0.8);
+
+  /* Colores de texto */
+  --text-primary: #2D3748;
+  --text-secondary: #4A5568;
+  --text-accent: #1A365D;
+
+  /* Sombras suaves */
+  --shadow-soft: 0 4px 20px rgba(79, 195, 247, 0.1);
+  --shadow-hover: 0 8px 30px rgba(79, 195, 247, 0.15);
+
+  /* Tipografía */
+  font-family: 'Inter', 'Poppins', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--text-accent);
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+p {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+a {
+  color: var(--calypso-blue-dark);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: var(--pink-dark);
+  transform: translateY(-1px);
+}
+
+button {
+  border-radius: 12px;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: inherit;
+  background: linear-gradient(135deg, var(--calypso-blue) 0%, var(--pink) 100%);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  overflow: hidden;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* Animaciones globales */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* Utilidades responsivas */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  button {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}

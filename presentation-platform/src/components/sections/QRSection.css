@@ -1,0 +1,179 @@
+/* --- Contenedor Principal y Efecto 3D --- */
+.qr-section-perspective-wrapper {
+  perspective: 1500px; /* Habilita la perspectiva para las transformaciones 3D */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6rem 2rem;
+  /* background: #f0f2f5; */ /* Opcional: un color de fondo para la sección */
+}
+
+/* --- Diseño de la Tarjeta Principal (Glassmorphism) --- */
+.qr-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  width: 100%;
+  max-width: 800px;
+  padding: 3rem;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  transform-style: preserve-3d; /* Importante para que las rotaciones funcionen */
+}
+
+/* --- Lado Izquierdo: Información --- */
+.qr-info {
+  flex: 1;
+  min-width: 300px;
+  color: #1a2940;
+}
+.qr-info h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, #833ab4, #fd1d1d, #fcb045);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+.qr-info p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  color: #4a5568;
+}
+.qr-username {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+/* --- Lado Derecho: Imagen QR --- */
+.qr-image-wrapper {
+  position: relative;
+  cursor: pointer;
+  border-radius: 20px;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+.qr-code {
+  display: block;
+  width: 200px;
+  height: 200px;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Efectos de Hover sobre el QR --- */
+.qr-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 20px;
+}
+.qr-image-wrapper:hover .qr-overlay {
+  opacity: 1;
+}
+
+/* Resplandor sutil */
+.qr-glow {
+    position: absolute;
+    inset: -2px;
+    border-radius: 22px;
+    background: linear-gradient(120deg, #833ab4, #fd1d1d, #fcb045);
+    filter: blur(15px);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+}
+.qr-image-wrapper:hover .qr-glow {
+    opacity: 0.6;
+}
+
+
+/* --- Estilos del Modal --- */
+.qr-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.qr-modal-content {
+  position: relative;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.qr-modal-image {
+  width: 300px;
+  height: 300px;
+  border-radius: 16px;
+}
+.qr-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #f0f2f5;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #4a5568;
+}
+.qr-modal-text {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #833ab4;
+}
+.modal-username {
+  font-weight: 600;
+  color: #1a2940;
+}
+
+/* --- Responsividad --- */
+@media (max-width: 768px) {
+  .qr-card {
+    flex-direction: column;
+    padding: 2rem;
+    gap: 2rem;
+  }
+  .qr-info {
+    text-align: center;
+  }
+}

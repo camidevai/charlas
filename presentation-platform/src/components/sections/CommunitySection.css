@@ -1,0 +1,76 @@
+:root {
+  --text-color-primary: #1a202c;
+  --text-color-secondary: #5a687f;
+  --color-facebook-icon: #1877F2;
+  --color-instagram-icon: #C13584;
+  --color-tiktok-icon: #010101;
+}
+
+.community-section-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 5rem 2rem;
+  background-color: #f8f9fa; /* Un fondo muy sutil */
+}
+
+.total-followers-count {
+  font-size: 4.5rem; /* 72px */
+  font-weight: 800;
+  color: var(--text-color-primary);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.total-followers-label {
+  font-size: 1.25rem; /* 20px */
+  font-weight: 400;
+  color: var(--text-color-secondary);
+  max-width: 400px; /* Evita que el texto sea demasiado ancho en pantallas grandes */
+}
+
+.social-icons-container {
+  display: flex;
+  gap: 1.5rem; /* Espacio entre los íconos */
+  margin-top: 2.5rem;
+}
+
+.social-icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: color 0.3s ease;
+  color: #333; /* Color base del ícono */
+}
+
+/* Colores específicos al pasar el mouse */
+.social-icon-link:hover {
+  color: #fff;
+}
+
+.social-icon-link.facebook:hover {
+  background-color: var(--color-facebook-icon);
+}
+
+.social-icon-link.instagram:hover {
+  background-color: var(--color-instagram-icon);
+}
+
+.social-icon-link.tiktok:hover {
+  background-color: var(--color-tiktok-icon);
+}
+
+@media (max-width: 768px) {
+  .total-followers-count {
+    font-size: 3.5rem; /* 56px */
+  }
+  .total-followers-label {
+    font-size: 1.1rem; /* 18px */
+  }
+}

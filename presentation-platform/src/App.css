@@ -1,0 +1,103 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-primary);
+}
+
+.section-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  min-height: calc(100vh - 80px);
+}
+
+/* Estilos para modo presentación */
+.presentation-mode .section-container {
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.presentation-mode .navigation {
+  display: none;
+}
+
+/* Animaciones de transición */
+.section-transition-enter {
+  opacity: 0;
+  transform: translateX(100px);
+}
+
+.section-transition-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 500ms, transform 500ms;
+}
+
+.section-transition-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.section-transition-exit-active {
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: opacity 500ms, transform 500ms;
+}
+
+/* Utilidades para elementos interactivos */
+.interactive-element {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 12px;
+  padding: 1rem;
+  background: var(--bg-card);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-soft);
+}
+
+.interactive-element:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+.interactive-element:active {
+  transform: translateY(-2px);
+}
+
+/* Estilos para tarjetas de contenido */
+.content-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2rem;
+  margin: 1rem;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.content-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .section-container {
+    padding: 1rem;
+    min-height: calc(100vh - 60px);
+  }
+
+  .content-card {
+    padding: 1.5rem;
+    margin: 0.5rem;
+  }
+
+  .interactive-element {
+    padding: 0.8rem;
+  }
+}
