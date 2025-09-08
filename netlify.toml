@@ -1,0 +1,12 @@
+[build]
+  base = "presentation-platform"
+  publish = "presentation-platform/dist"
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
