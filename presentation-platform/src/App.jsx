@@ -6,6 +6,7 @@ import PresentationContainer from './components/layout/PresentationContainer'
 import WelcomeSection from './components/sections/WelcomeSection'
 import PersonalStorySection from './components/sections/PersonalStorySection'
 import AIIntroSection from './components/sections/AIIntroSection'
+import AIPromptsSection from './components/sections/AIPromptsSection'
 import AIToolsSection from './components/sections/AIToolsSection'
 import './App.css'
 
@@ -16,8 +17,9 @@ function App() {
   const sections = [
     { id: 'welcome', title: 'Bienvenida', component: WelcomeSection },
     { id: 'personal-story', title: 'Mi Historia Personal', component: PersonalStorySection },
-    { id: 'ai-intro', title: 'Introducción a la IA', component: AIIntroSection },
-    { id: 'ai-tools', title: 'Herramientas de IA Generativa', component: AIToolsSection }
+    { id: 'ai-intro', title: 'Herramientas de IA Generativa', component: AIIntroSection },
+    { id: 'ai-prompts', title: 'Cómo hablarle a las IAs', component: AIPromptsSection },
+    { id: 'ai-tools', title: 'Introducción a la IA', component: AIToolsSection }
   ]
 
   const nextSection = () => {
@@ -71,7 +73,6 @@ function App() {
           currentSection={currentSection}
           onSectionChange={goToSection}
           isPresenting={isPresenting}
-          onTogglePresenting={() => setIsPresenting(!isPresenting)}
         />
 
         <PresentationContainer isPresenting={isPresenting}>

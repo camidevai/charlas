@@ -20,7 +20,7 @@
 .nav-container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 1rem 2rem;
   max-width: 1400px;
   margin: 0 auto;
@@ -78,7 +78,49 @@
   display: flex;
   gap: 0.5rem;
   flex: 1;
-  justify-content: center;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.25rem 0;
+  margin: -0.25rem 0;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+}
+
+/* Gradiente sutil para indicar scroll */
+.section-nav::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 20px;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0.95), transparent);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.section-nav:hover::after {
+  opacity: 1;
+}
+
+/* Ocultar scrollbar pero mantener funcionalidad */
+.section-nav::-webkit-scrollbar {
+  height: 4px;
+}
+
+.section-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.section-nav::-webkit-scrollbar-thumb {
+  background: rgba(79, 195, 247, 0.3);
+  border-radius: 2px;
+}
+
+.section-nav::-webkit-scrollbar-thumb:hover {
+  background: rgba(79, 195, 247, 0.5);
 }
 
 .section-btn {
@@ -92,6 +134,8 @@
   cursor: pointer;
   transition: all 0.3s ease;
   white-space: nowrap;
+  flex-shrink: 0;
+  min-width: max-content;
 }
 
 .section-btn:hover {
@@ -105,70 +149,29 @@
   box-shadow: var(--shadow-soft);
 }
 
-/* Controles de presentación */
-.presentation-controls {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  min-width: 200px;
-  justify-content: flex-end;
-}
 
-.control-btn {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  background: rgba(79, 195, 247, 0.1);
-  color: var(--calypso-blue-dark);
-}
-
-.control-btn:hover:not(:disabled) {
-  background: rgba(79, 195, 247, 0.2);
-  transform: translateY(-1px);
-}
-
-.control-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.control-btn.present {
-  background: linear-gradient(135deg, var(--calypso-blue) 0%, var(--pink) 100%);
-  color: white;
-  box-shadow: var(--shadow-soft);
-}
-
-.control-btn.present:hover {
-  box-shadow: var(--shadow-hover);
-  background: linear-gradient(135deg, var(--calypso-blue-dark) 0%, var(--pink-dark) 100%);
-}
-
-.control-btn.present.active {
-  background: linear-gradient(135deg, var(--pink) 0%, var(--calypso-blue) 100%);
-}
 
 /* Responsive design */
 @media (max-width: 1200px) {
-  .section-nav {
-    display: none;
-  }
-  
   .nav-container {
     gap: 1rem;
+    flex-wrap: wrap;
   }
-  
-  .nav-brand,
-  .progress-container,
-  .presentation-controls {
+
+  .progress-container {
+    order: 1;
+    width: 100%;
     min-width: auto;
   }
+
+  .section-nav {
+    order: 2;
+    width: 100%;
+    justify-content: flex-start;
+    padding: 0.5rem 0;
+  }
+
+
 }
 
 @media (max-width: 768px) {
@@ -176,22 +179,30 @@
     padding: 0.8rem 1rem;
     gap: 0.5rem;
   }
-  
-  .nav-brand span {
-    display: none;
+
+  .section-nav {
+    padding: 0.25rem 0;
   }
-  
+
+  .section-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    min-width: max-content;
+  }
+
   .progress-container {
-    flex: 1;
+    width: 100%;
   }
-  
-  .control-btn span {
-    display: none;
+
+
+
+  /* Scrollbar más visible en móvil */
+  .section-nav::-webkit-scrollbar {
+    height: 6px;
   }
-  
-  .control-btn {
-    padding: 0.5rem;
-    min-width: 40px;
-    justify-content: center;
+
+  .section-nav::-webkit-scrollbar-thumb {
+    background: rgba(79, 195, 247, 0.4);
+    border-radius: 3px;
   }
 }

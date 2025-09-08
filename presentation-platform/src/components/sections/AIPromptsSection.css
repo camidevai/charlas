@@ -1,0 +1,501 @@
+/* ========================================
+   AI PROMPTS SECTION - CÓMO HABLARLE A LAS IAS
+   ======================================== */
+
+.ai-prompts-section {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.ai-prompts-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.prompts-content {
+  max-width: 1200px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* ========================================
+   HEADER
+   ======================================== */
+
+.prompts-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.prompts-header .section-icon {
+  width: 64px;
+  height: 64px;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.prompts-title {
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.prompts-subtitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ========================================
+   SLIDE NAVIGATION
+   ======================================== */
+
+.slide-navigation {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.slide-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.slide-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.slide-nav-btn.active {
+  background: var(--accent-color, #4F46E5);
+  border-color: var(--accent-color, #4F46E5);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* ========================================
+   SLIDE CONTAINER
+   ======================================== */
+
+.slide-container {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 24px;
+  padding: 3rem;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  margin-bottom: 2rem;
+  min-height: 600px;
+}
+
+/* ========================================
+   PROMPT SLIDE (Individual slides)
+   ======================================== */
+
+.prompt-slide {
+  height: 100%;
+}
+
+.slide-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 3px solid var(--slide-color, #4F46E5);
+}
+
+.slide-icon {
+  color: var(--slide-color, #4F46E5);
+  flex-shrink: 0;
+}
+
+.slide-header h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--slide-color, #4F46E5);
+  margin: 0;
+}
+
+.slide-header p {
+  font-size: 1.1rem;
+  color: #64748b;
+  margin: 0.5rem 0 0 0;
+}
+
+.slide-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  height: calc(100% - 120px);
+}
+
+/* ========================================
+   STRATEGIES SECTION
+   ======================================== */
+
+.strategies-section h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.strategies-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.strategies-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  font-size: 1rem;
+  color: #475569;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.strategies-list li:last-child {
+  border-bottom: none;
+}
+
+.strategies-list li svg {
+  color: var(--slide-color, #4F46E5);
+  flex-shrink: 0;
+}
+
+/* ========================================
+   EXAMPLE SECTION
+   ======================================== */
+
+.example-section h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+}
+
+.code-block {
+  background: #1e293b;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border-left: 4px solid var(--slide-color, #4F46E5);
+}
+
+.code-block pre {
+  color: #e2e8f0;
+  font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.template-note {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: rgba(var(--slide-color-rgb, 79, 70, 229), 0.1);
+  border-radius: 8px;
+  font-weight: 600;
+  color: var(--slide-color, #4F46E5);
+}
+
+.template-note svg {
+  flex-shrink: 0;
+}
+
+/* ========================================
+   SUMMARY SLIDE
+   ======================================== */
+
+.summary-slide {
+  height: 100%;
+}
+
+.summary-table {
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr 1.5fr;
+  gap: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.table-header {
+  display: contents;
+}
+
+.table-header > div {
+  background: #1e293b;
+  color: white;
+  padding: 1rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.table-row {
+  display: contents;
+}
+
+.table-row > div {
+  padding: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+}
+
+.table-row:nth-child(even) > div {
+  background: #f8fafc;
+}
+
+.type-cell {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.strategies-cell {
+  color: #475569;
+  font-weight: 600;
+}
+
+.example-cell {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.85rem;
+  color: #64748b;
+  background: #f1f5f9 !important;
+}
+
+.tip-cell {
+  color: #059669;
+  font-weight: 600;
+  font-style: italic;
+}
+
+/* ========================================
+   SLIDE CONTROLS
+   ======================================== */
+
+.slide-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.slide-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.slide-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.slide-indicator {
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+/* ========================================
+   FOOTER NOTE
+   ======================================== */
+
+.footer-note {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.footer-note p {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* ========================================
+   SECTION NAVIGATION
+   ======================================== */
+
+.section-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 0;
+}
+
+.nav-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.nav-button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.nav-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.section-indicator {
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+@media (max-width: 768px) {
+  .ai-prompts-section {
+    padding: 1rem;
+  }
+  
+  .prompts-title {
+    font-size: 2rem;
+  }
+  
+  .slide-container {
+    padding: 2rem;
+    min-height: 500px;
+  }
+  
+  .slide-body {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .slide-navigation {
+    gap: 0.5rem;
+  }
+  
+  .slide-nav-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .slide-nav-btn span {
+    display: none;
+  }
+  
+  .summary-table {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .table-header {
+    display: none;
+  }
+  
+  .table-row {
+    display: block;
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .table-row > div {
+    padding: 0.5rem 0;
+    border-bottom: none;
+  }
+  
+  .table-row > div:before {
+    content: attr(data-label);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 0.25rem;
+    color: #1e293b;
+  }
+}
+
+@media (max-width: 480px) {
+  .prompts-title {
+    font-size: 1.5rem;
+  }
+  
+  .slide-container {
+    padding: 1.5rem;
+  }
+  
+  .slide-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .slide-header h2 {
+    font-size: 2rem;
+  }
+}

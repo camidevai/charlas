@@ -50,43 +50,37 @@ const TechJourneySection = ({ variants }) => {
     { 
       id: 3,
       Icon: Briefcase, 
-      title: "Práctica Profesional LIFERAY", 
-      image: "https://subir-imagen.com/images/2025/09/07/image2c0b457ce12251a9.md.png",
+      title: "Dilema Estudiando JAVA", 
+      image: "https://subir-imagen.com/images/2025/09/08/imageec19a7c2340beaf8.md.png",
       delay: 1.4 
     },
     { 
       id: 4,
       Icon: Coffee, 
-      title: "Dilema Estudiando JAVA", 
-      image: "https://subir-imagen.com/images/2025/09/07/image2c0b457ce12251a9.md.png",
+      title: "Me grabe para recordar", 
+      image: "https://subir-imagen.com/images/2025/09/08/image1b0e30e776692826.md.png",
       delay: 1.6 
     },
     { 
       id: 5,
       Icon: Users, 
       title: "Crear Contenido en RRSS", 
-      image: "https://subir-imagen.com/images/2025/09/07/image2c0b457ce12251a9.md.png",
+      image: "https://subir-imagen.com/images/2025/09/08/image8fd7f03a0a1a65b3.md.png",
       delay: 1.8 
     },
+  
     { 
       id: 6,
-      Icon: TrendingUp, 
-      title: "VIRAL", 
-      image: "https://subir-imagen.com/images/2025/09/07/image2c0b457ce12251a9.md.png",
-      delay: 2.0 
-    },
-    { 
-      id: 7,
       Icon: Brain, 
       title: "Inteligencia Artificial", 
-      image: "https://subir-imagen.com/images/2025/09/07/image2c0b457ce12251a9.md.png",
+      image: "https://subir-imagen.com/images/2025/09/08/image3e7081f0e0df6555.md.png",
       delay: 2.2 
     },
     { 
-      id: 8,
+      id: 7,
       Icon: Bot, 
       title: "Creación de mi Primer Agente GPT", 
-      image: "https://subir-imagen.com/images/2025/09/07/image2c0b457ce12251a9.md.png",
+      image: "https://subir-imagen.com/images/2025/09/08/image99eddfc6b4e9f7f0.md.png",
       delay: 2.4 
     }
   ];

@@ -3,6 +3,20 @@ import { ChevronRight, Sparkles, Heart, Brain, User, Briefcase, GraduationCap, B
 import './WelcomeSection.css'
 
 const WelcomeSection = ({ onNext, isLast, sectionNumber, totalSections }) => {
+  // Función para manejar el clic del botón "Comenzar esta Experiencia"
+  const handleStartExperience = () => {
+    // Hacer scroll suave hacia arriba
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+
+    // Pequeño delay para que el scroll se complete antes de cambiar de sección
+    setTimeout(() => {
+      onNext()
+    }, 300)
+  }
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -226,7 +240,7 @@ const WelcomeSection = ({ onNext, isLast, sectionNumber, totalSections }) => {
         <motion.div className="welcome-actions" variants={itemVariants}>
           <motion.button
             className="start-button"
-            onClick={onNext}
+            onClick={handleStartExperience}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             disabled={isLast}

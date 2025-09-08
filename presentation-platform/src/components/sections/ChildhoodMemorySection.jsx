@@ -4,6 +4,7 @@ import { Baby, Users, GraduationCap, Monitor, Brush, Home, Sparkles } from 'luci
 
 const ChildhoodMemorySection = ({ variants }) => {
   const ref = useRef(null)
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"]
@@ -84,14 +85,14 @@ const ChildhoodMemorySection = ({ variants }) => {
         </motion.div>
 
         {memoryIcons.map(({ Icon, position, tooltip, delay }, index) => (
-          <motion.div 
+          <motion.div
             key={index}
             className={`memory-icon ${position}`}
             variants={iconVariants}
             custom={delay}
-            whileHover={{ 
-              scale: 1.1, 
-              opacity: 0.9,
+            whileHover={{
+              scale: 1.1,
+              opacity: 1,
               transition: { duration: 0.2 }
             }}
           >
