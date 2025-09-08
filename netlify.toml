@@ -1,6 +1,6 @@
 [build]
   base = "presentation-platform"
-  publish = "presentation-platform/dist"
+  publish = "dist"
   command = "npm run build"
 
 [build.environment]
