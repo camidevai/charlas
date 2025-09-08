@@ -190,12 +190,53 @@ const AIToolsSection = ({ onPrev, isFirst, sectionNumber, totalSections }) => {
       return
     }
 
+    // Verificar si EmailJS está configurado
+    if (!window.emailjs || typeof window.emailjs.sendForm !== 'function') {
+      console.warn('EmailJS no está configurado correctamente')
+      setFormStatus('error')
+      setTimeout(() => {
+        setFormStatus('idle')
+      }, 3000)
+      return
+    }
+
+    // Obtener credenciales de variables de entorno
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+
+    // Verificar que las credenciales estén disponibles
+    if (!serviceId || !templateId || !publicKey) {
+      console.error('❌ Credenciales de EmailJS no encontradas en variables de entorno')
+      console.log('Verifica que el archivo .env contenga:')
+      console.log('- VITE_EMAILJS_SERVICE_ID')
+      console.log('- VITE_EMAILJS_TEMPLATE_ID')
+      console.log('- VITE_EMAILJS_PUBLIC_KEY')
+      setFormStatus('error')
+      setTimeout(() => {
+        setFormStatus('idle')
+      }, 3000)
+      return
+    }
+
+    // Inicializar EmailJS con la clave pública
+    try {
+      emailjs.init(publicKey)
+    } catch (initError) {
+      console.error('Error inicializando EmailJS:', initError)
+      setFormStatus('error')
+      setTimeout(() => {
+        setFormStatus('idle')
+      }, 3000)
+      return
+    }
+
     setFormStatus('loading')
 
     try {
       await emailjs.sendForm(
-        'service_t0cvv27',
-        'template_lh7gtfd',
+        serviceId,
+        templateId,
         formRef.current
       )
 
@@ -214,6 +255,12 @@ const AIToolsSection = ({ onPrev, isFirst, sectionNumber, totalSections }) => {
 
     } catch (error) {
       console.error('Error sending email:', error)
+
+      // Mostrar mensaje más específico si es error de configuración
+      if (error.message && error.message.includes('public key')) {
+        console.warn('EmailJS requiere configuración de clave pública. Visita: https://dashboard.emailjs.com/admin/account')
+      }
+
       setFormStatus('error')
 
       // Resetear a idle después de 3 segundos
