@@ -388,7 +388,7 @@ const AIToolsSection = ({ onPrev, isFirst, sectionNumber, totalSections }) => {
               </div>
 
               <div className="form-group">
-                <label htmlFor="brand_name">Nombre de la Marca *</label>
+                <label htmlFor="brand_name">Eres empresa? *</label>
                 <input
                   type="text"
                   id="brand_name"
@@ -417,14 +417,14 @@ const AIToolsSection = ({ onPrev, isFirst, sectionNumber, totalSections }) => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="message">Mensaje del Proyecto *</label>
+              <label htmlFor="message">Comentario sobre la charla*</label>
               <textarea
                 id="message"
                 name="message"
                 value={formData.message}
                 onChange={handleInputChange}
                 className={errors.message ? 'error' : ''}
-                placeholder="Cuéntame sobre tu proyecto, ideas o cómo podemos colaborar..."
+                placeholder="Dejame un mensaje..."
                 rows="4"
               />
               {errors.message && <span className="error-message">{errors.message}</span>}
