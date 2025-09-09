@@ -971,6 +971,180 @@
 }
 
 /* ========================================
+   IMPORTANT MESSAGE STYLES
+   ======================================== */
+
+.important-message {
+  max-width: 900px;
+  margin: 4rem auto;
+  padding: 0 1rem;
+}
+
+.important-content {
+  background: linear-gradient(135deg, var(--pink-light) 0%, var(--calypso-blue-light) 100%);
+  border-radius: 24px;
+  padding: 3rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.important-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.important-icon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  display: block;
+  animation: pulse 2s ease-in-out infinite;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.important-title {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 800;
+  color: var(--calypso-blue-dark);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  position: relative;
+  z-index: 1;
+}
+
+.important-text {
+  font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.important-highlight {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+}
+
+.important-highlight span {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.important-highlight strong {
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  color: var(--calypso-blue-dark);
+  font-weight: 700;
+}
+
+/* ========================================
+   COMPANY SECTION STYLES
+   ======================================== */
+
+.company-section {
+  max-width: 700px;
+  margin: 2rem auto 0;
+  padding: 0 1rem;
+}
+
+.company-content {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  border: 2px solid #e2e8f0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 4px 15px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.company-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #0891B2, #06B6D4, #0891B2);
+  border-radius: 20px 20px 0 0;
+}
+
+.company-logo {
+  flex-shrink: 0;
+  background: #f8fafc;
+  border-radius: 16px;
+  padding: 1rem;
+  border: 1px solid #e2e8f0;
+}
+
+.company-logo img {
+  height: 70px;
+  width: auto;
+  border-radius: 8px;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
+}
+
+.company-info {
+  flex: 1;
+  text-align: left;
+}
+
+.company-description {
+  font-size: 1.1rem;
+  color: #374151;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.company-services {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.company-services span {
+  background: linear-gradient(135deg, #0891B2, #06B6D4);
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  box-shadow: 0 4px 12px rgba(8, 145, 178, 0.3);
+  transition: all 0.3s ease;
+}
+
+.company-services span:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(8, 145, 178, 0.4);
+}
+
+/* ========================================
    CONTACT SECTION STYLES
    ======================================== */
 
@@ -1130,6 +1304,67 @@
    ======================================== */
 
 @media (max-width: 768px) {
+  .important-message {
+    margin: 2rem auto;
+    padding: 0 0.5rem;
+  }
+
+  .important-content {
+    padding: 2rem;
+    border-radius: 20px;
+  }
+
+  .important-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .important-highlight {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+
+  .company-section {
+    margin: 1.5rem auto 0;
+    padding: 0 0.5rem;
+  }
+
+  .company-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+    padding: 2rem 1.5rem;
+  }
+
+  .company-logo {
+    align-self: center;
+    padding: 0.8rem;
+  }
+
+  .company-logo img {
+    height: 60px;
+  }
+
+  .company-info {
+    text-align: center;
+  }
+
+  .company-description {
+    font-size: 1rem;
+  }
+
+  .company-services {
+    justify-content: center;
+    gap: 0.6rem;
+  }
+
+  .company-services span {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+
   .contact-section {
     margin-top: 2rem;
     padding: 0 0.5rem;

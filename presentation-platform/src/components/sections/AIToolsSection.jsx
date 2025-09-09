@@ -314,7 +314,7 @@ const AIToolsSection = ({ onPrev, isFirst, sectionNumber, totalSections }) => {
           </p>
         </motion.div>
 
-    
+
 
         {/* Vertical Timeline */}
         <motion.div className="vertical-timeline-container" variants={itemVariants}>
@@ -361,6 +361,28 @@ const AIToolsSection = ({ onPrev, isFirst, sectionNumber, totalSections }) => {
           </div>
         </motion.div>
 
+
+
+
+
+        {/* Mensaje Importante */}
+        <motion.div className="important-message" variants={itemVariants}>
+          <div className="important-content">
+            <div className="important-icon">⚡</div>
+            <h2 className="important-title">
+              ¡Antes de irme quiero hablarles sobre algo súper importante!
+            </h2>
+            <p className="important-text">
+              La IA no es solo una herramienta más, es la revolución que está cambiando
+              las reglas del juego económico y productivo. Es nuestra oportunidad de
+              romper el ciclo de 50+ años y crear un futuro más próspero.
+            </p>
+            <div className="important-highlight">
+              <span>💡</span>
+              <strong>La pregunta no es si la IA va a cambiar el mundo, sino si tú vas a ser parte de ese cambio.</strong>
+            </div>
+          </div>
+        </motion.div>
         {/* Sección de Contacto */}
         <motion.div className="contact-section" variants={itemVariants}>
           <div className="contact-header">
@@ -456,6 +478,31 @@ const AIToolsSection = ({ onPrev, isFirst, sectionNumber, totalSections }) => {
           </form>
         </motion.div>
 
+
+
+
+
+
+        {/* Sección InformatiK-AI */}
+        <motion.div className="company-section" variants={itemVariants}>
+          <div className="company-content">
+            <div className="company-logo">
+              <img src="https://subir-imagen.com/images/2025/09/09/Imagen-de-WhatsApp-2025-08-23-a-las-13.52.00_28ee0441.jpg" alt="InformatiK-AI" />
+            </div>
+            <div className="company-info">
+              <p className="company-description">
+                Empresa fundada por Camila, Jorge y Gonzalo, especializada en soluciones de IA
+              </p>
+              <div className="company-services">
+                <span>🚀 Desarrollos como este</span>
+                <span>⚡ Automatizaciones</span>
+                <span>🎯 Charlas a empresas</span>
+                <span>📚 Clases particulares</span>
+                <span>🛠️ Talleres especializados</span>
+              </div>
+            </div>
+          </div>
+        </motion.div>
         {/* Navegación */}
         <motion.div className="tools-navigation" variants={itemVariants}>
           <motion.button
