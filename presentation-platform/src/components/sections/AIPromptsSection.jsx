@@ -6,6 +6,14 @@ import './AIPromptsSection.css'
 const AIPromptsSection = ({ onNext, onPrev, isFirst, isLast, sectionNumber, totalSections }) => {
   const [currentSlide, setCurrentSlide] = useState(0)
 
+  // Scroll hacia arriba cuando se monta el componente
+  React.useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }, [])
+
   const slides = [
     {
       id: 'text',

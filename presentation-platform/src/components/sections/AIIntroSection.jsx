@@ -8,6 +8,14 @@ const AIIntroSection = ({ onNext, onPrev, isFirst, isLast, sectionNumber, totalS
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 })
   const [hoveredCategory, setHoveredCategory] = useState(null)
 
+  // Scroll hacia arriba cuando se monta el componente
+  React.useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }, [])
+
   // Descripciones de las herramientas de IA
   const toolDescriptions = {
     'ChatGPT': 'Asistente de IA conversacional para generar texto, responder preguntas y ayudar con tareas creativas. Ideal para escritura, programación y resolución de problemas.',

@@ -23,6 +23,14 @@ const AIToolsSection = ({ onPrev, isFirst, sectionNumber, totalSections }) => {
   const [errors, setErrors] = useState({})
   const formRef = useRef(null)
 
+  // Scroll hacia arriba cuando se monta el componente
+  React.useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }, [])
+
   // Datos de la línea de tiempo
   const timelineMilestones = [
     {

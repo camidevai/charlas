@@ -91,7 +91,7 @@ const WelcomeSection = ({ onNext, isLast, sectionNumber, totalSections }) => {
               </div>
               <div className="credential">
                 <Briefcase className="credential-icon" />
-                <span>CEO of Informatik-AI</span>
+                <span>CEO y  fundadora de Informatik‑AI</span>
               </div>
               <div className="credential">
                 <Brain className="credential-icon" />
