@@ -386,14 +386,7 @@ Responde SOLO con el prompt optimizado, sin explicaciones adicionales.`
               </button>
             )
           })}
-          <button
-            className={`slide-nav-btn ${currentSlide === 4 ? 'active' : ''}`}
-            onClick={() => goToSlide(4)}
-            style={{ '--accent-color': '#6366F1' }}
-          >
-            <CheckCircle size={20} />
-            <span>Resumen</span>
-          </button>
+     
         </motion.div>
 
         {/* Slide Content */}
