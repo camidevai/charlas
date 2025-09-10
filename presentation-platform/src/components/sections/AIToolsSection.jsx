@@ -369,9 +369,7 @@ const AIToolsSection = ({ onPrev, isFirst, sectionNumber, totalSections }) => {
         <motion.div className="important-message" variants={itemVariants}>
           <div className="important-content">
             <div className="important-icon">⚡</div>
-            <h2 className="important-title">
-              ¡Antes de irme quiero hablarles sobre algo súper importante!
-            </h2>
+         
             <p className="important-text">
               La IA no es solo una herramienta más, es la revolución que está cambiando
               las reglas del juego económico y productivo. Es nuestra oportunidad de
