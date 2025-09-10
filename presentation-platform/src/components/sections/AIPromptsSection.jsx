@@ -37,8 +37,8 @@ const AIPromptsSection = ({ onNext, onPrev, isFirst, isLast, sectionNumber, tota
       ],
       example: `Actúa como un chef experto.
 Ayúdame a crear una receta fácil de pasta para 4 personas.
-Formato: lista de ingredientes + pasos simples. Tono: amigable.
-Tiempo de cocción: máximo 30 minutos.`,
+Formato: lista de ingredientes + pasos simples. 
+Tono: amigable.`,
       template: 'Fórmula: rol + objetivo + formato + detalles',
       color: '#4F46E5'
     },
@@ -51,7 +51,7 @@ Tiempo de cocción: máximo 30 minutos.`,
         'Describe qué quieres ver',
         'Menciona el estilo visual',
         'Especifica colores y ambiente',
-        'Di qué NO quieres (evitar)',
+        'Di qué NO quieres ver (evitar)',
         'Incluye detalles de iluminación',
         'Prueba y ajusta el resultado'
       ],
