@@ -303,7 +303,7 @@ Crea un prompt optimizado, profesional y específico que maximice la calidad del
 
 Responde SOLO con el prompt optimizado, sin explicaciones adicionales.`
 
-      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyASAi1_BAwTXPfmPTDnJGROg8hfno-Csqk`, {
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=AIzaSyDuiHLpGGwz05ROwhsa26YN317bt6biZWE`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -319,6 +319,7 @@ Responde SOLO con el prompt optimizado, sin explicaciones adicionales.`
 
       if (!response.ok) {
         throw new Error(`API Error: ${response.status} ${response.statusText}`)
+        
       }
 
       const data = await response.json()

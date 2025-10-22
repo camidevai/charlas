@@ -77,7 +77,7 @@ const WelcomeSection = ({ onNext, isLast, sectionNumber, totalSections }) => {
                 ease: "linear"
               }}
             >
-              Más Allá de los Números: El Lado Humano de la Ingeniería Femenina
+              Mi mapa en la era de la Inteligencia Artificial
             </motion.h2>
           </motion.div>
 
