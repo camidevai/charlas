@@ -36,7 +36,7 @@ const TechJourneySection = ({ variants }) => {
     { 
       id: 1,
       Icon: Search, 
-      title: "Manos a la hobra", 
+      title: "Por Cuatro Años", 
       image: "https://subir-imagen.com/images/2025/09/08/image350458540eb9d1d7.md.png",
       delay: 1.0 
     },
