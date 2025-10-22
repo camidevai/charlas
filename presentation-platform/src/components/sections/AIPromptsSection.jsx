@@ -626,7 +626,7 @@ Responde SOLO con el prompt optimizado, sin explicaciones adicionales.`
                 >
                   <div className="result-header">
                     <h4>🎉 Tu prompt optimizado está listo</h4>
-                    <p>Optimizado con Google Gemini 1.5 Flash siguiendo las mejores prácticas</p>
+                    <p>Optimizado con Google Gemini 2.5 flash preview siguiendo las mejores prácticas</p>
                   </div>
 
                   <div className="result-content">
