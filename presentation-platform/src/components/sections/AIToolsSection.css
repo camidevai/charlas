@@ -1421,3 +1421,53 @@
     font-size: 0.95rem;
   }
 }
+
+.qr-section-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #f8f9fa 100%);
+  border-radius: 20px;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.qr-header {
+  margin-bottom: 2rem;
+}
+
+.qr-icon {
+  width: 56px;
+  height: 56px;
+  color: #4F46E5; /* Un color de acento de la app */
+  margin-bottom: 1rem;
+}
+
+.qr-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.qr-subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 500px;
+}
+
+.qr-code-wrapper {
+  padding: 1rem;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.qr-code-image {
+  width: 250px;
+  height: 250px;
+  border-radius: 8px;
+  display: block;
+}

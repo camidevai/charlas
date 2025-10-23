@@ -381,6 +381,8 @@ const AIToolsSection = ({ onPrev, isFirst, sectionNumber, totalSections }) => {
             </div>
           </div>
         </motion.div>
+
+        
         {/* Sección de Contacto */}
         <motion.div className="contact-section" variants={itemVariants}>
           <div className="contact-header">
@@ -476,10 +478,20 @@ const AIToolsSection = ({ onPrev, isFirst, sectionNumber, totalSections }) => {
           </form>
         </motion.div>
 
-
-
-
-
+        {/* Nuevo QR Section */}
+        <motion.div className="qr-section-container" variants={itemVariants}>
+          <div className="qr-header">
+            <h2 className="qr-title">Explora la App</h2>
+            <p className="qr-subtitle">Escanea para probar las herramientas de IA en vivo.</p>
+          </div>
+          <div className="qr-code-wrapper">
+            <img 
+              src="https://api.qrcodecreator.com/storage/qr-codes/4482797-1761184314.svg" 
+              alt="QR Code para la aplicación en Netlify" 
+              className="qr-code-image" 
+            />
+          </div>
+        </motion.div>
 
         {/* Sección InformatiK-AI */}
         <motion.div className="company-section" variants={itemVariants}>
