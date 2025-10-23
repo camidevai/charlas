@@ -101,6 +101,14 @@ const WelcomeSection = ({ onNext, isLast, sectionNumber, totalSections }) => {
                 <User className="credential-icon" />
                 <span>Creadora de contenido en Redes Sociales</span>
               </div>
+              <div className="credential">
+                <Users className="credential-icon" />
+                <span>Certificadora acreditada por ChileValora en  ciberseguridad.</span>
+              </div>
+              <div className="credential">
+                <Users className="credential-icon" />
+                <span>Embajadora de la Cámara Chilena de Inteligencia Artificial.</span>
+              </div>
             </div>
           </div>
 

@@ -23,6 +23,7 @@ const AIIntroSection = ({ onNext, onPrev, isFirst, isLast, sectionNumber, totalS
     'Gemini': 'IA multimodal de Google que combina texto, imágenes y código. Perfecta para análisis integral y tareas que requieren múltiples tipos de entrada.',
     'Perplexity': 'Motor de búsqueda potenciado por IA que proporciona respuestas precisas con fuentes verificadas. Ideal para investigación y obtención de información actualizada.',
     'Claude': 'Asistente de IA de Anthropic enfocado en conversaciones útiles, inofensivas y honestas. Excelente para análisis de texto y tareas de escritura profesional.',
+    'Notebooklm': 'Un asistente de investigación que resume hechos, explica conceptos complejos y genera ideas a partir de tus documentos.',
     'MidJourney': 'Generador de imágenes de IA líder en calidad artística y creatividad. Perfecto para crear arte digital, ilustraciones y conceptos visuales únicos.',
     'Leonardo.AI': 'Plataforma de generación de imágenes con control preciso sobre estilos y elementos. Ideal para diseñadores y creadores de contenido visual.',
     'DALL·E': 'Generador de imágenes de OpenAI que crea arte a partir de descripciones de texto. Excelente para conceptos creativos y visualizaciones originales.',
@@ -170,6 +171,21 @@ const AIIntroSection = ({ onNext, onPrev, isFirst, isLast, sectionNumber, totalS
                 >
                   <div className="tool-content">
                     <div className="tool-name">Claude</div>
+                    <ExternalLink className="external-icon" size={16} />
+                  </div>
+                </a>
+                
+
+                <a
+                  href="https://notebooklm.google/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="tool-card"
+                  onMouseEnter={(e) => handleMouseEnter('Notebooklm', e, 'texto')}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <div className="tool-content">
+                    <div className="tool-name">Notebooklm</div>
                     <ExternalLink className="external-icon" size={16} />
                   </div>
                 </a>
@@ -451,6 +467,9 @@ const AIIntroSection = ({ onNext, onPrev, isFirst, isLast, sectionNumber, totalS
               />
             </div>
           </motion.div>
+
+
+
 
         </motion.div>
 
