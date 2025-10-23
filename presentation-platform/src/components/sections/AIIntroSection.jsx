@@ -259,7 +259,7 @@ const AIIntroSection = ({ onNext, onPrev, isFirst, isLast, sectionNumber, totalS
                   </div>
                 </a>
                 <a
-                  href="https://nanobanana.ai/"
+                  href="https://aistudio.google.com/prompts/new_chat?model=models%2Fgemini-2.5-flash-image&prompt=Generate%20an%20image%20of%20a%20banana%20wearing%20a%20costume."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="tool-card"
