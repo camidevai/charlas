@@ -87,7 +87,7 @@ const WelcomeSection = ({ onNext, isLast, sectionNumber, totalSections }) => {
             <div className="speaker-credentials">
               <div className="credential">
                 <GraduationCap className="credential-icon" />
-                <span>Ingeniera en Informática, con mensión en Cyberseguridad</span>
+                <span>Ingeniera en Informática, con mención en Cyberseguridad</span>
               </div>
               <div className="credential">
                 <Briefcase className="credential-icon" />
