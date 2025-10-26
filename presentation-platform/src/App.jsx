@@ -8,6 +8,7 @@ import PersonalStorySection from './components/sections/PersonalStorySection'
 import AIIntroSection from './components/sections/AIIntroSection'
 import AIPromptsSection from './components/sections/AIPromptsSection'
 import AIToolsSection from './components/sections/AIToolsSection'
+import QRSection from './components/sections/QRSection'
 import './App.css'
 
 function App() {
@@ -95,6 +96,9 @@ function App() {
               />
             </motion.div>
           </AnimatePresence>
+
+          {/* QR Widget Global - Visible en todas las secciones */}
+          <QRSection />
         </PresentationContainer>
       </div>
     </Router>

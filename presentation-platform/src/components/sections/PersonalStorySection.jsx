@@ -1,19 +1,16 @@
 import { motion } from 'framer-motion'
 import { ChevronLeft, ChevronRight, Heart } from 'lucide-react'
-import { useState } from 'react'
 import './PersonalStorySection.css'
 
 // Importar componentes refactorizados
 import ImpostorTitleSection from './ImpostorTitleSection'
 import SocialStatsSection from './SocialStatsSection'
 import MainContentSection from './MainContentSection'
-import QRSection from './QRSection'
 import ChildhoodMemorySection from './ChildhoodMemorySection'
 import ProfessionalJourneySection from './ProfessionalJourneySection'
 import TechJourneySection from './TechJourneySection'
 
 const PersonalStorySection = ({ onNext, onPrev, isFirst, isLast, sectionNumber, totalSections }) => {
-  const [isQRModalOpen, setIsQRModalOpen] = useState(false)
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -50,15 +47,6 @@ const PersonalStorySection = ({ onNext, onPrev, isFirst, isLast, sectionNumber, 
 
         {/* Sección de estadísticas y redes sociales */}
         <SocialStatsSection variants={itemVariants} />
-
-        {/* Sección QR Code Instagram */}
-        <QRSection 
-          variants={itemVariants} 
-          showQRModal={isQRModalOpen} 
-          setShowQRModal={setIsQRModalOpen} 
-        />
-
-
 
         {/* Sección principal con personaje y contenido */}
         <MainContentSection variants={itemVariants} />
