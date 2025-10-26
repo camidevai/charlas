@@ -4,73 +4,149 @@
   --color-facebook-icon: #1877F2;
   --color-instagram-icon: #C13584;
   --color-tiktok-icon: #010101;
+  --color-purple: #4F46E5;
+  --color-blue: #4FC3F7;
 }
 
-.community-section-container {
+/* Sección mejorada con glassmorphism */
+.social-stats-section-enhanced {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.social-stats-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 5rem 2rem;
-  background-color: #f8f9fa; /* Un fondo muy sutil */
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 30px;
+  padding: 3rem 2rem;
+  box-shadow: 0 8px 32px rgba(79, 195, 247, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.total-followers-count {
-  font-size: 4.5rem; /* 72px */
-  font-weight: 800;
-  color: var(--text-color-primary);
-  line-height: 1;
-  margin-bottom: 0.5rem;
+/* Wrapper para el número de seguidores */
+.followers-count-wrapper {
+  width: 100%;
 }
 
-.total-followers-label {
-  font-size: 1.25rem; /* 20px */
-  font-weight: 400;
+.followers-count {
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 900;
+  background: linear-gradient(135deg, #4F46E5 0%, #4FC3F7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.1;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.followers-label {
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  font-weight: 500;
   color: var(--text-color-secondary);
-  max-width: 400px; /* Evita que el texto sea demasiado ancho en pantallas grandes */
+  max-width: 500px;
+  margin: 0;
+  line-height: 1.6;
 }
 
-.social-icons-container {
+/* Contenedor de iconos mejorado */
+.social-icons-container-enhanced {
   display: flex;
-  gap: 1.5rem; /* Espacio entre los íconos */
-  margin-top: 2.5rem;
+  gap: 1.2rem;
+  margin-top: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-.social-icon-link {
+.social-icon-link-enhanced {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
-  background-color: #fff;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-  transition: color 0.3s ease;
-  color: #333; /* Color base del ícono */
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 20px rgba(79, 195, 247, 0.15);
+  transition: all 0.3s ease;
+  color: #333;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  cursor: pointer;
 }
 
-/* Colores específicos al pasar el mouse */
-.social-icon-link:hover {
+.social-icon-link-enhanced:hover {
   color: #fff;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 12px 30px rgba(79, 195, 247, 0.25);
+  transform: translateY(-4px);
 }
 
-.social-icon-link.facebook:hover {
+.social-icon-link-enhanced.facebook:hover {
   background-color: var(--color-facebook-icon);
+  border-color: var(--color-facebook-icon);
 }
 
-.social-icon-link.instagram:hover {
-  background-color: var(--color-instagram-icon);
+.social-icon-link-enhanced.instagram:hover {
+  background: linear-gradient(135deg, #C13584 0%, #E1306C 100%);
+  border-color: #C13584;
 }
 
-.social-icon-link.tiktok:hover {
+.social-icon-link-enhanced.tiktok:hover {
   background-color: var(--color-tiktok-icon);
+  border-color: var(--color-tiktok-icon);
 }
 
 @media (max-width: 768px) {
-  .total-followers-count {
-    font-size: 3.5rem; /* 56px */
+  .social-stats-container {
+    padding: 2rem 1.5rem;
+    gap: 1.2rem;
   }
-  .total-followers-label {
-    font-size: 1.1rem; /* 18px */
+
+  .followers-count {
+    font-size: 3rem;
+  }
+
+  .followers-label {
+    font-size: 1.1rem;
+  }
+
+  .social-icon-link-enhanced {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+@media (max-width: 480px) {
+  .social-stats-container {
+    padding: 1.5rem 1rem;
+    gap: 1rem;
+    border-radius: 20px;
+  }
+
+  .followers-count {
+    font-size: 2.5rem;
+  }
+
+  .followers-label {
+    font-size: 1rem;
+  }
+
+  .social-icon-link-enhanced {
+    width: 50px;
+    height: 50px;
+  }
+
+  .social-icons-container-enhanced {
+    gap: 1rem;
   }
 }

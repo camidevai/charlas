@@ -12,6 +12,8 @@ const AIPromptsSection = ({ onNext, onPrev, isFirst, isLast, sectionNumber, tota
   const [optimizedPrompt, setOptimizedPrompt] = useState('')
   const [showResult, setShowResult] = useState(false)
   const [apiError, setApiError] = useState('')
+  const [showToolModal, setShowToolModal] = useState(false)
+  const [selectedTool, setSelectedTool] = useState(null)
 
   // Scroll hacia arriba cuando se monta el componente
   React.useEffect(() => {
@@ -21,121 +23,314 @@ const AIPromptsSection = ({ onNext, onPrev, isFirst, isLast, sectionNumber, tota
     })
   }, [])
 
+  // Metodologías para cada tipo de contenido
+  const methodologies = {
+    text: {
+      name: 'C.L.A.R.A',
+      description: 'Contexto • Logro • Acciones • Redacción • Apariencia',
+      components: [
+        { letter: 'C', title: 'CONTEXTO', description: 'Define la situación de uso', emoji: '📝' },
+        { letter: 'L', title: 'LOGRO', description: 'Especifica el resultado deseado', emoji: '🎯' },
+        { letter: 'A', title: 'ACCIONES', description: 'Detalla los pasos a seguir', emoji: '⚡' },
+        { letter: 'R', title: 'REDACCIÓN', description: 'Define el tono y estilo', emoji: '✍️' },
+        { letter: 'A', title: 'APARIENCIA', description: 'Especifica el formato de salida', emoji: '📋' }
+      ]
+    },
+    image: {
+      name: 'V.I.S.U.A.L',
+      description: 'Visual • Intención • Situación • Un estilo • Ajustes • Límites',
+      components: [
+        { letter: 'V', title: 'VISUAL PRINCIPAL', description: 'Qué debe verse al centro', emoji: '🎨' },
+        { letter: 'I', title: 'INTENCIÓN', description: 'Para qué sirve la imagen', emoji: '💡' },
+        { letter: 'S', title: 'SITUACIÓN', description: 'Dónde está y qué pasa', emoji: '🌍' },
+        { letter: 'U', title: 'UN ESTILO', description: 'Estilo artístico deseado', emoji: '🎭' },
+        { letter: 'A', title: 'AJUSTES', description: 'Formato y resolución', emoji: '⚙️' },
+        { letter: 'L', title: 'LÍMITES', description: 'Qué NO debe aparecer', emoji: '🚫' }
+      ]
+    },
+    video: {
+      name: 'A.C.C.I.O.N',
+      description: 'Audiencia • Contexto • Continuidad • Imagen • Output • Narración',
+      components: [
+        { letter: 'A', title: 'AUDIENCIA', description: 'Para quién y qué lograr', emoji: '👥' },
+        { letter: 'C', title: 'CONTEXTO', description: 'Escena y personajes', emoji: '🎬' },
+        { letter: 'C', title: 'CONTINUIDAD', description: 'Secuencia de planos', emoji: '📹' },
+        { letter: 'I', title: 'IMAGEN', description: 'Ritmo, cámara y estética', emoji: '🎥' },
+        { letter: 'O', title: 'OUTPUT', description: 'Aspectos técnicos', emoji: '⚙️' },
+        { letter: 'N', title: 'NARRACIÓN', description: 'Voz en off o texto', emoji: '🎙️' }
+      ]
+    },
+    audio: {
+      name: 'A.U.D.I.O',
+      description: 'Audiencia • Universo • Dirección • Instrucciones • Output',
+      components: [
+        { letter: 'A', title: 'AUDIENCIA', description: 'Para quién y para qué', emoji: '👥' },
+        { letter: 'U', title: 'UNIVERSO SONORO', description: 'Ambiente y acompañamiento', emoji: '🎵' },
+        { letter: 'D', title: 'DIRECCIÓN', description: 'Características de la voz', emoji: '🎤' },
+        { letter: 'I', title: 'INSTRUCCIONES', description: 'Qué debe decir exactamente', emoji: '📝' },
+        { letter: 'O', title: 'OUTPUT', description: 'Formato y duración', emoji: '⚙️' }
+      ]
+    }
+  }
+
   const slides = [
     {
       id: 'text',
       icon: MessageSquare,
       title: 'Texto 📝',
-      subtitle: 'Estrategias para prompts de texto efectivos',
-      strategies: [
-        'Define quién debe actuar (rol)',
-        'Explica qué necesitas exactamente',
-        'Especifica el formato de respuesta',
-        'Da ejemplos si es necesario',
-        'Pide pasos claros y ordenados',
-        'Menciona el tono deseado'
-      ],
-      example: `Actúa como un chef experto.
-Ayúdame a crear una receta fácil de pasta para 4 personas.
-Formato: lista de ingredientes + pasos simples. 
-Tono: amigable.`,
-      template: 'Fórmula: rol + objetivo + formato + detalles',
+      subtitle: 'Metodología C.L.A.R.A para prompts de texto efectivos',
+      example: `[CONTEXTO] Quiero crear una historia épica de aventura en Minecraft donde el jugador debe rescatar a un dragón amigo de un castillo oscuro.
+
+[LOGRO] La historia debe ser emocionante, con giros sorpresa, y que haga que el lector quiera jugar Minecraft para vivirla.
+
+[ACCIONES] Estructura: 1) Introducción del dragón amigo, 2) El problema (castillo oscuro), 3) Pistas para encontrar el camino, 4) Batalla final épica, 5) Final sorpresa.
+
+[REDACCIÓN] Tono: aventurero, emocionante, con emojis, como si fuera un amigo contando una historia increíble, sin palabras muy difíciles.
+
+[APARIENCIA] Formato: historia en párrafos cortos, máximo 300 palabras, con emojis de Minecraft (⛏️ 🐉 🏰), fácil de leer en el celular.`,
+      template: 'Fórmula: C.L.A.R.A (Contexto • Logro • Acciones • Redacción • Apariencia)',
       color: '#4F46E5'
     },
     {
       id: 'image',
       icon: Palette,
       title: 'Imagen 🎨',
-      subtitle: 'Técnicas para generar imágenes precisas',
-      strategies: [
-        'Describe qué quieres ver',
-        'Menciona el estilo visual',
-        'Especifica colores y ambiente',
-        'Di qué NO quieres ver (evitar)',
-        'Incluye detalles de iluminación',
-        'Prueba y ajusta el resultado'
-      ],
-      example: `Una persona feliz cocinando en una cocina moderna,
-estilo fotografía natural, luz suave de ventana,
-colores cálidos, ambiente acogedor,
-evitar: imágenes borrosas, texto en la imagen.`,
-      template: 'Fórmula: qué + dónde + cómo + evitar',
+      subtitle: 'Metodología V.I.S.U.A.L para imágenes precisas',
+      example: `[VISUAL PRINCIPAL] Un Pokémon nuevo y único que es la fusión de Pikachu (amarillo con rayo) + Charizard (fuego y alas), con ojos brillantes y expresión amigable.
+
+[INTENCIÓN] Imagen para mi canal de YouTube de Pokémon, debe verse épica pero amigable, que haga que otros niños quieran verla.
+
+[SITUACIÓN] El Pokémon está en una isla flotante con nubes, fondo con montañas moradas y cielo naranja al atardecer, primer plano en el Pokémon.
+
+[UN ESTILO] Estilo anime tipo Pokémon oficial, colores vibrantes y brillantes, iluminación mágica, ambiente fantástico y emocionante.
+
+[AJUSTES] Formato: PNG con fondo transparente, resolución 1920x1080px, relación 16:9, sin texto sobre la imagen.
+
+[LÍMITES] NO incluir: Pokémon reales existentes sin modificar, fondos aburridos, colores oscuros, elementos violentos.`,
+      template: 'Fórmula: V.I.S.U.A.L (Visual • Intención • Situación • Un estilo • Ajustes • Límites)',
       color: '#EC4899'
     },
     {
       id: 'video',
       icon: Film,
       title: 'Video 🎬',
-      subtitle: 'Directrices para videos cinematográficos',
-      strategies: [
-        'Define el tipo de toma (cerca, lejos)',
-        'Describe la acción principal',
-        'Especifica el ambiente/lugar',
-        'Menciona duración deseada',
-        'Indica movimiento de cámara',
-        'Describe el estilo visual'
-      ],
-      example: `Video de una persona preparando café en casa,
-cámara fija, movimiento suave, ambiente matutino,
-luz natural, 10 segundos, enfoque en las manos.`,
-      template: 'Fórmula: tipo de toma + acción + ambiente + duración',
+      subtitle: 'Metodología A.C.C.I.O.N para videos cinematográficos',
+      example: `[AUDIENCIA] Video corto de 45 segundos para YouTube Shorts dirigido a niños de 10-14 años que juegan Minecraft. Objetivo: mostrar un tutorial épico de construcción.
+
+[CONTEXTO] Un niño en su habitación jugando Minecraft, construyendo un castillo gigante. Pantalla del juego en primer plano, luz de la pantalla iluminando su cara emocionada.
+
+[CONTINUIDAD] Escena 1 (0-10s): Plano rápido del terreno vacío. Escena 2 (10-35s): Construcción acelerada del castillo (bloques cayendo, paredes subiendo). Escena 3 (35-45s): Castillo terminado, el niño sonríe a cámara.
+
+[IMAGEN] Cámara rápida y dinámica, transiciones con efectos de Minecraft (bloques), colores vibrantes, ritmo emocionante, efectos de zoom en partes importantes.
+
+[OUTPUT] Formato vertical 9:16, duración exacta 45s, subtítulos grandes con emojis (⛏️ 🏰), sin música (solo sonidos de Minecraft).
+
+[NARRACIÓN] Voz entusiasta de niño: "¡Mira cómo construyo este castillo ÉPICO en 45 segundos! ¿Tú puedes hacerlo más rápido?"`,
+      template: 'Fórmula: A.C.C.I.O.N (Audiencia • Contexto • Continuidad • Imagen • Output • Narración)',
       color: '#10B981'
     },
     {
       id: 'audio',
       icon: Music,
       title: 'Audio 🎵',
-      subtitle: 'Composición musical y efectos sonoros',
-      strategies: [
-        'Define el estilo musical',
-        'Especifica el ritmo (rápido/lento)',
-        'Menciona instrumentos principales',
-        'Indica la duración deseada',
-        'Describe el ambiente/emoción',
-        'Di si debe repetirse (loop)'
-      ],
-      example: `Música relajante para estudiar, ritmo lento,
-piano suave + sonidos de naturaleza, 2 minutos, que se pueda repetir.`,
-      template: 'Fórmula: estilo + ritmo + instrumentos + duración',
+      subtitle: 'Metodología A.U.D.I.O para composición musical',
+      example: `[AUDIENCIA] Intro de canal de YouTube gaming para niños de 10-14 años que ven videos de Roblox. Duración: 10 segundos. Debe ser épica y emocionante.
+
+[UNIVERSO SONORO] Música de fondo: ritmo de videojuego épico (tipo Roblox), con efectos de sonido (beeps, explosiones suaves, monedas), volumen de música al 70%, energía alta.
+
+[DIRECCIÓN DE VOZ] Voz de niño entusiasta, tono emocionado y amigable, velocidad rápida pero clara, mucha energía, como si estuviera gritando de emoción.
+
+[INSTRUCCIONES] Texto exacto: "¡HOLA GAMERS! Bienvenidos a mi canal. Hoy vamos a jugar Roblox y será ÉPICO. ¡Dale like y suscríbete!"
+
+[OUTPUT TÉCNICO] Archivo .mp3, duración exacta 10 segundos, bitrate 192kbps, limpio, sin ruidos de fondo, listo para YouTube.`,
+      template: 'Fórmula: A.U.D.I.O (Audiencia • Universo • Dirección • Instrucciones • Output)',
       color: '#F59E0B'
     }
   ]
 
-  // Preguntas guiadas para cada tipo de prompt
+  // Preguntas guiadas para cada tipo de prompt - Metodologías específicas
   const guidedQuestions = {
     text: [
-      { question: "¿Qué necesito?", example: "Una receta", placeholder: "Ej: Una receta, un artículo, un código..." },
-      { question: "¿Quién debe actuar?", example: "Un chef experto", placeholder: "Ej: Un chef experto, un escritor profesional..." },
-      { question: "¿Qué necesito exactamente?", example: "Una receta fácil", placeholder: "Ej: Una receta fácil, un artículo de 500 palabras..." },
-      { question: "¿Cómo quiero que me lo entregue?", example: "Lista de ingredientes + pasos simples", placeholder: "Ej: Lista numerada, formato tabla, párrafos..." },
-      { question: "¿Tengo ejemplos específicos?", example: "Como pasta carbonara", placeholder: "Ej: Como pasta carbonara, similar a..." },
-      { question: "¿Qué pasos debo seguir?", example: "Paso a paso detallado", placeholder: "Ej: Paso a paso, resumen ejecutivo..." },
-      { question: "¿En qué tono lo quiero?", example: "Amigable", placeholder: "Ej: Amigable, profesional, casual..." }
+      {
+        label: "C",
+        question: "¿En qué situación usarás este texto?",
+        hint: "Define dónde, cuándo y para quién",
+        example: "Historia de aventura en Minecraft",
+        placeholder: "Ej: Historia de aventura en Minecraft"
+      },
+      {
+        label: "L",
+        question: "¿Qué resultado quieres lograr?",
+        hint: "Qué debe sentir o entender la audiencia",
+        example: "Que quieran jugar Minecraft y vivan la aventura",
+        placeholder: "Ej: Que quieran jugar Minecraft y vivan la aventura"
+      },
+      {
+        label: "A",
+        question: "¿Qué estructura debe tener?",
+        hint: "Pasos o secciones principales",
+        example: "Dragón amigo → Castillo oscuro → Batalla épica → Final sorpresa",
+        placeholder: "Ej: Dragón amigo → Castillo oscuro → Batalla épica"
+      },
+      {
+        label: "R",
+        question: "¿Qué tono prefieres?",
+        hint: "Cómo debe sonar el texto",
+        example: "Aventurero y emocionante",
+        placeholder: "Ej: Aventurero, emocionante, divertido",
+        options: ["Aventurero", "Emocionante", "Divertido", "Misterioso", "Épico", "Cómico"],
+        isMultiSelect: true
+      },
+      {
+        label: "A",
+        question: "¿En qué formato lo necesitas?",
+        hint: "Cómo debe verse el resultado final",
+        example: "Párrafos cortos con emojis de Minecraft",
+        placeholder: "Ej: Párrafos cortos, con emojis, fácil de leer",
+        options: ["Párrafos", "Lista", "Guion", "Con emojis", "Tabla"],
+        isMultiSelect: true
+      }
     ],
     image: [
-      { question: "¿Qué quiero ver?", example: "Una persona cocinando", placeholder: "Ej: Una persona cocinando, un paisaje..." },
-      { question: "¿Dónde está la escena?", example: "En una cocina moderna", placeholder: "Ej: En una cocina moderna, al aire libre..." },
-      { question: "¿Qué estilo visual?", example: "Fotografía natural", placeholder: "Ej: Fotografía natural, ilustración, arte digital..." },
-      { question: "¿Qué colores y ambiente?", example: "Colores cálidos, ambiente acogedor", placeholder: "Ej: Colores cálidos, tonos fríos..." },
-      { question: "¿Qué tipo de iluminación?", example: "Luz suave de ventana", placeholder: "Ej: Luz suave, iluminación dramática..." },
-      { question: "¿Qué NO quiero ver?", example: "Imágenes borrosas, texto", placeholder: "Ej: Imágenes borrosas, elementos no deseados..." }
+      {
+        label: "V",
+        question: "¿Qué debe verse al centro?",
+        hint: "El elemento principal de la imagen",
+        example: "Pokémon fusión: Pikachu + Charizard",
+        placeholder: "Ej: Pokémon fusión: Pikachu + Charizard"
+      },
+      {
+        label: "I",
+        question: "¿Para qué sirve esta imagen?",
+        hint: "Su propósito o contexto de uso",
+        example: "Portada para mi canal de YouTube de Pokémon",
+        placeholder: "Ej: Portada para mi canal de YouTube de Pokémon"
+      },
+      {
+        label: "S",
+        question: "¿Dónde está y qué pasa?",
+        hint: "Ubicación, ambiente y contexto",
+        example: "Isla flotante con nubes, atardecer morado y naranja",
+        placeholder: "Ej: Isla flotante con nubes, atardecer morado"
+      },
+      {
+        label: "U",
+        question: "¿Qué estilo visual?",
+        hint: "Tipo de arte o técnica",
+        example: "Estilo anime tipo Pokémon oficial",
+        placeholder: "Ej: Estilo anime tipo Pokémon, colores vibrantes"
+      },
+      {
+        label: "A",
+        question: "¿Qué formato técnico?",
+        hint: "Resolución, tipo de archivo, tamaño",
+        example: "PNG transparente, 1920x1080px, relación 16:9",
+        placeholder: "Ej: PNG transparente, 1920x1080px, 16:9"
+      },
+      {
+        label: "L",
+        question: "¿Qué NO debe aparecer?",
+        hint: "Elementos a evitar o prohibir",
+        example: "Sin Pokémon reales sin modificar, sin colores oscuros",
+        placeholder: "Ej: Sin Pokémon reales, sin colores oscuros"
+      }
     ],
     video: [
-      { question: "¿Qué tipo de toma?", example: "Cámara fija", placeholder: "Ej: Cámara fija, plano cercano, gran angular..." },
-      { question: "¿Cuál es la acción principal?", example: "Preparando café", placeholder: "Ej: Preparando café, caminando..." },
-      { question: "¿Dónde sucede?", example: "En casa, cocina", placeholder: "Ej: En casa, al aire libre, oficina..." },
-      { question: "¿Cuánto debe durar?", example: "10 segundos", placeholder: "Ej: 10 segundos, 1 minuto..." },
-      { question: "¿Qué movimiento de cámara?", example: "Movimiento suave", placeholder: "Ej: Movimiento suave, estático, zoom..." },
-      { question: "¿Qué estilo visual?", example: "Ambiente matutino, luz natural", placeholder: "Ej: Cinematográfico, documental..." }
+      {
+        label: "A",
+        question: "¿Para quién y qué quieres lograr?",
+        hint: "Audiencia objetivo y propósito del video",
+        example: "YouTube Shorts, 45s, niños 10-14 años, tutorial Minecraft",
+        placeholder: "Ej: YouTube Shorts, 45s, niños 10-14 años"
+      },
+      {
+        label: "C",
+        question: "¿Dónde pasa y quién aparece?",
+        hint: "Ubicación, personajes y ambiente",
+        example: "Niño en habitación construyendo castillo en Minecraft",
+        placeholder: "Ej: Niño en habitación construyendo castillo"
+      },
+      {
+        label: "C",
+        question: "¿Cuál es la secuencia de planos?",
+        hint: "Cómo se desarrolla la acción paso a paso",
+        example: "Terreno vacío → Construcción acelerada → Castillo terminado",
+        placeholder: "Ej: Terreno vacío → Construcción → Castillo terminado"
+      },
+      {
+        label: "I",
+        question: "¿Qué ritmo y estética?",
+        hint: "Movimiento de cámara, estilo visual, colores",
+        example: "Cámara rápida y dinámica, efectos de bloques, colores vibrantes",
+        placeholder: "Ej: Cámara rápida, efectos de bloques, colores vibrantes"
+      },
+      {
+        label: "O",
+        question: "¿Qué formato técnico?",
+        hint: "Resolución, duración, subtítulos",
+        example: "9:16 vertical, 45s, subtítulos con emojis ⛏️ 🏰",
+        placeholder: "Ej: 9:16 vertical, 45s, subtítulos con emojis"
+      },
+      {
+        label: "N",
+        question: "¿Voz en off o texto?",
+        hint: "Narración, diálogo o elementos visuales",
+        example: "Voz de niño: '¡Mira este castillo ÉPICO en 45 segundos!'",
+        placeholder: "Ej: Voz de niño: '¡Mira este castillo ÉPICO!'"
+      }
     ],
     audio: [
-      { question: "¿Qué estilo musical?", example: "Música relajante", placeholder: "Ej: Música relajante, energética, clásica..." },
-      { question: "¿Qué ritmo?", example: "Ritmo lento", placeholder: "Ej: Ritmo lento, rápido, moderado..." },
-      { question: "¿Qué instrumentos?", example: "Piano suave", placeholder: "Ej: Piano suave, guitarra, orquesta..." },
-      { question: "¿Para qué propósito?", example: "Para estudiar", placeholder: "Ej: Para estudiar, hacer ejercicio..." },
-      { question: "¿Cuánto debe durar?", example: "2 minutos", placeholder: "Ej: 2 minutos, 30 segundos..." },
-      { question: "¿Debe repetirse?", example: "Que se pueda repetir", placeholder: "Ej: Loop continuo, una sola vez..." }
+      {
+        label: "A",
+        question: "¿Para quién y para qué?",
+        hint: "Audiencia y propósito del audio",
+        example: "Intro de canal gaming Roblox, niños 10-14 años",
+        placeholder: "Ej: Intro de canal gaming Roblox, niños 10-14 años"
+      },
+      {
+        label: "U",
+        question: "¿Qué ambiente sonoro?",
+        hint: "Música, efectos, ruidos de fondo",
+        example: "Música épica tipo Roblox + efectos (beeps, monedas)",
+        placeholder: "Ej: Música épica tipo Roblox + efectos de sonido"
+      },
+      {
+        label: "D",
+        question: "¿Cómo debe sonar la voz?",
+        hint: "Género, edad, tono, energía",
+        example: "Voz de niño entusiasta, emocionado, mucha energía",
+        placeholder: "Ej: Voz de niño entusiasta, emocionado"
+      },
+      {
+        label: "I",
+        question: "¿Qué debe decir exactamente?",
+        hint: "Texto o guion del audio",
+        example: "¡HOLA GAMERS! Bienvenidos a mi canal. ¡Hoy Roblox será ÉPICO!",
+        placeholder: "Ej: ¡HOLA GAMERS! Bienvenidos a mi canal..."
+      },
+      {
+        label: "O",
+        question: "¿Qué formato técnico?",
+        hint: "Tipo de archivo, duración, calidad",
+        example: "MP3, 10 segundos, 192kbps, listo para YouTube",
+        placeholder: "Ej: MP3, 10 segundos, 192kbps"
+      }
     ]
+  }
+
+  // Metodologías para mostrar en el modal
+  const methodologyNames = {
+    text: "C.L.A.R.A",
+    image: "V.I.S.U.A.L",
+    video: "A.C.C.I.O.N",
+    audio: "A.U.D.I.O"
+  }
+
+  const methodologyDescriptions = {
+    text: "Contexto • Logro • Acciones • Redacción • Apariencia",
+    image: "Visual • Intención • Situación • Un estilo • Ajustes • Límites",
+    video: "Audiencia • Contexto • Continuidad • Imagen • Output • Narración",
+    audio: "Audiencia • Universo • Dirección • Instrucciones • Output"
   }
 
   const summaryData = [
@@ -257,39 +452,41 @@ piano suave + sonidos de naturaleza, 2 minutos, que se pueda repetir.`,
         `${q.question}: ${userAnswers[index] || 'No especificado'}`
       ).join('\n')
 
-      // Instrucciones específicas según el tipo de prompt
+      // Instrucciones específicas según el tipo de prompt con metodologías
       const optimizationInstructions = {
-        text: `Optimiza este prompt de texto siguiendo las mejores prácticas de Google:
-        - Define un rol claro y específico
-        - Especifica el formato de salida deseado
-        - Incluye ejemplos si es relevante
-        - Define el tono y estilo
-        - Sé específico y detallado
-        - Usa estructura clara con pasos numerados si es necesario`,
+        text: `Optimiza este prompt de texto siguiendo la metodología C.L.A.R.A:
+        - CONTEXTO: Define la situación de uso
+        - LOGRO: Especifica el resultado deseado
+        - ACCIONES: Detalla los pasos a seguir
+        - REDACCIÓN: Define el tono y estilo
+        - APARIENCIA: Especifica el formato de salida
+        Crea un prompt profesional y detallado que maximice la calidad del resultado.`,
 
-        image: `Optimiza este prompt de imagen siguiendo las mejores prácticas:
-        - Describe la escena principal claramente
-        - Especifica el estilo visual y técnica
-        - Incluye detalles de iluminación y colores
-        - Define la composición y encuadre
-        - Agrega elementos negativos si es necesario
-        - Usa términos técnicos de fotografía/arte cuando sea apropiado`,
+        image: `Optimiza este prompt de imagen siguiendo la metodología V.I.S.U.A.L:
+        - VISUAL PRINCIPAL: Describe qué debe verse al centro
+        - INTENCIÓN: Define el propósito de la imagen
+        - SITUACIÓN: Describe la escena y el contexto
+        - UN ESTILO: Especifica el estilo artístico
+        - AJUSTES TÉCNICOS: Define formato y resolución
+        - LÍMITES: Especifica qué NO debe aparecer
+        Crea un prompt detallado con términos técnicos de fotografía/arte.`,
 
-        video: `Optimiza este prompt de video siguiendo las mejores prácticas:
-        - Define el tipo de toma y movimiento de cámara
-        - Especifica la duración y ritmo
-        - Describe la acción principal y secundaria
-        - Incluye detalles de iluminación y ambiente
-        - Define el estilo visual y mood
-        - Especifica transiciones si es relevante`,
+        video: `Optimiza este prompt de video siguiendo la metodología A.C.C.I.O.N:
+        - AUDIENCIA: Define para quién y qué lograr
+        - CONTEXTO: Describe la escena y personajes
+        - CONTINUIDAD: Detalla la secuencia de planos
+        - IMAGEN: Especifica ritmo, cámara y estética
+        - OUTPUT: Define aspectos técnicos y entrega
+        - NARRACIÓN: Especifica voz en off o texto visual
+        Crea un prompt cinematográfico y profesional.`,
 
-        audio: `Optimiza este prompt de audio siguiendo las mejores prácticas:
-        - Define el género y estilo musical claramente
-        - Especifica instrumentación y arreglos
-        - Incluye tempo y estructura
-        - Define el mood y atmósfera
-        - Especifica duración y formato
-        - Incluye detalles técnicos de producción si es relevante`
+        audio: `Optimiza este prompt de audio siguiendo la metodología A.U.D.I.O:
+        - AUDIENCIA: Define para quién y para qué
+        - UNIVERSO SONORO: Describe ambiente y acompañamiento
+        - DIRECCIÓN DE VOZ: Especifica características de la voz
+        - INSTRUCCIONES: Define exactamente qué debe decir
+        - OUTPUT TÉCNICO: Especifica formato y duración
+        Crea un prompt detallado con especificaciones técnicas de audio.`
       }
 
       const systemPrompt = `Eres un experto en optimización de prompts para IA generativa. Tu tarea es tomar las respuestas del usuario y crear un prompt profesional y efectivo.
@@ -359,6 +556,54 @@ Responde SOLO con el prompt optimizado, sin explicaciones adicionales.`
     }
   }
 
+  // Función para abrir herramienta en modal
+  const openToolModal = (tool) => {
+    setSelectedTool(tool)
+    setShowToolModal(true)
+  }
+
+  // Función para cerrar modal de herramienta
+  const closeToolModal = () => {
+    setShowToolModal(false)
+    setSelectedTool(null)
+  }
+
+  // Datos de herramientas
+  const aiTools = [
+    {
+      id: 'gemini',
+      name: 'Google Gemini',
+      logo: '✨',
+      url: 'https://gemini.google.com',
+      description: 'Gemini es el modelo de IA más avanzado de Google para texto, imágenes y más',
+      color: '#4F46E5'
+    },
+    {
+      id: 'chatgpt',
+      name: 'ChatGPT',
+      logo: '💬',
+      url: 'https://chatgpt.com',
+      description: 'ChatGPT es un modelo de lenguaje conversacional de OpenAI',
+      color: '#10a37f'
+    },
+    {
+      id: 'suno',
+      name: 'Suno',
+      logo: '🎵',
+      url: 'https://suno.com/',
+      description: 'Suno es un modelo de IA para crear música original',
+      color: '#FF6B6B'
+    },
+    {
+      id: 'apob',
+      name: 'Apob',
+      logo: '🎨',
+      url: 'https://apob.ai',
+      description: 'Apob es una herramienta de IA para crear imágenes',
+      color: '#9D4EDD'
+    }
+  ]
+
   return (
     <motion.section 
       className="ai-prompts-section"
@@ -413,16 +658,30 @@ Responde SOLO con el prompt optimizado, sin explicaciones adicionales.`
                   </div>
 
                   <div className="slide-body">
-                    <div className="strategies-section">
-                      <h3>Estrategias clave</h3>
-                      <ul className="strategies-list">
-                        {currentSlideData.strategies.map((strategy, index) => (
-                          <li key={index}>
-                            <CheckCircle size={16} />
-                            <span>{strategy}</span>
-                          </li>
+                    {/* Metodología Visual */}
+                    <div className="methodology-section">
+                      <div className="methodology-header">
+                        <h3>Metodología {methodologies[currentSlideData.id].name}</h3>
+                        <p className="methodology-subtitle">{methodologies[currentSlideData.id].description}</p>
+                      </div>
+
+                      <div className="methodology-grid">
+                        {methodologies[currentSlideData.id].components.map((component, index) => (
+                          <motion.div
+                            key={index}
+                            className="methodology-card"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: index * 0.1, duration: 0.4 }}
+                            whileHover={{ scale: 1.05, y: -5 }}
+                          >
+                            <div className="card-letter">{component.letter}</div>
+                            <div className="card-emoji">{component.emoji}</div>
+                            <h4>{component.title}</h4>
+                            <p>{component.description}</p>
+                          </motion.div>
                         ))}
-                      </ul>
+                      </div>
                     </div>
 
                     <div className="example-section">
@@ -443,8 +702,25 @@ Responde SOLO con el prompt optimizado, sin explicaciones adicionales.`
                         <HelpCircle size={20} />
                         <span>Crear mi prompt paso a paso</span>
                       </button>
+
+                      {/* Botones de herramientas IA */}
+                   
                     </div>
+                    
                   </div>
+                        <p className="ai-tools-title "></p>
+                        <div className="ai-tools-buttons">
+                          {aiTools.map((tool) => (
+                            <button
+                              key={tool.id}
+                              onClick={() => openToolModal(tool)}
+                              className={`ai-tool-btn ${tool.id}`}
+                            >
+                              <span className="tool-logo">{tool.logo}</span>
+                              <span className="tool-name">{tool.name}</span>
+                            </button>
+                          ))}
+                        </div>
                 </div>
               )
             })()
@@ -547,7 +823,10 @@ Responde SOLO con el prompt optimizado, sin explicaciones adicionales.`
             onClick={(e) => e.stopPropagation()}
           >
             <div className="modal-header">
-              <h3>Crear tu prompt paso a paso</h3>
+              <div className="modal-title-section">
+                <h3>Crear tu prompt con metodología {methodologyNames[slides[currentSlide].id]}</h3>
+                <p className="methodology-description">{methodologyDescriptions[slides[currentSlide].id]}</p>
+              </div>
               <button className="close-btn" onClick={closeGuidedModal}>
                 <X size={24} />
               </button>
@@ -572,8 +851,43 @@ Responde SOLO con el prompt optimizado, sin explicaciones adicionales.`
                     </div>
 
                     <div className="question-content">
-                      <h4>{currentQ.question}</h4>
-                      <p className="question-example">Ejemplo: {currentQ.example}</p>
+                      <div className="question-header">
+                        {currentQ.label && <span className="methodology-label">{currentQ.label}</span>}
+                        <h4>{currentQ.question}</h4>
+                      </div>
+                      {currentQ.hint && <p className="question-hint">{currentQ.hint}</p>}
+                      <p className="question-example">💡 {currentQ.example}</p>
+
+                      {currentQ.isMultiSelect && currentQ.options ? (
+                        <div className="options-container">
+                          <div className="options-grid">
+                            {currentQ.options.map((option) => (
+                              <button
+                                key={option}
+                                className={`option-btn ${
+                                  userAnswers[currentQuestion]?.includes(option) ? 'selected' : ''
+                                }`}
+                                onClick={() => {
+                                  const current = userAnswers[currentQuestion] || '';
+                                  if (current.includes(option)) {
+                                    const updated = current
+                                      .split(', ')
+                                      .filter(item => item !== option)
+                                      .join(', ');
+                                    handleAnswerChange(currentQuestion, updated);
+                                  } else {
+                                    const updated = current ? `${current}, ${option}` : option;
+                                    handleAnswerChange(currentQuestion, updated);
+                                  }
+                                }}
+                              >
+                                {option}
+                              </button>
+                            ))}
+                          </div>
+                          <p className="options-note">O escribe tu propia respuesta:</p>
+                        </div>
+                      ) : null}
 
                       <input
                         type="text"
@@ -631,10 +945,45 @@ Responde SOLO con el prompt optimizado, sin explicaciones adicionales.`
                 >
                   <div className="result-header">
                     <h4>🎉 Tu prompt optimizado está listo</h4>
-                    <p>Optimizado con Google Gemini 2.5 flash preview siguiendo las mejores prácticas</p>
+                    <p>Optimizado con Google Gemini 2.5 flash preview siguiendo la metodología {methodologyNames[slides[currentSlide].id]}</p>
+                  </div>
+
+                  {/* Mostrar respuestas etiquetadas por metodología */}
+                  <div className="methodology-breakdown">
+                    {(() => {
+                      const currentSlideId = slides[currentSlide].id;
+                      const questions = guidedQuestions[currentSlideId];
+                      const emojis = {
+                        text: { C: '📝', L: '🎯', A: '⚡', R: '✍️' },
+                        image: { V: '🎨', I: '💡', S: '🌍', U: '🎭', A: '⚙️', L: '🚫' },
+                        video: { A: '👥', C: '🎬', I: '📹', O: '⚙️', N: '🎙️' },
+                        audio: { A: '👥', U: '🎵', D: '🎤', I: '📝', O: '⚙️' }
+                      };
+
+                      return (
+                        <div className="breakdown-items">
+                          {questions.map((q, index) => (
+                            userAnswers[index] && (
+                              <div key={index} className="breakdown-item">
+                                <span className="breakdown-emoji">
+                                  {emojis[currentSlideId]?.[q.label] || '•'}
+                                </span>
+                                <div className="breakdown-content">
+                                  <strong>{q.label}: {q.question.split(' - ')[1] || q.question}</strong>
+                                  <p>{userAnswers[index]}</p>
+                                </div>
+                              </div>
+                            )
+                          ))}
+                        </div>
+                      );
+                    })()}
                   </div>
 
                   <div className="result-content">
+                    <div className="optimized-prompt-header">
+                      <h5>Prompt optimizado por Gemini:</h5>
+                    </div>
                     <div className="optimized-prompt">
                       <pre>{optimizedPrompt}</pre>
                     </div>
@@ -664,6 +1013,64 @@ Responde SOLO con el prompt optimizado, sin explicaciones adicionales.`
                   )}
                 </motion.div>
               )}
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+
+      {/* Modal de herramientas IA */}
+      {showToolModal && selectedTool && (
+        <motion.div
+          className="tool-modal-overlay"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={closeToolModal}
+        >
+          <motion.div
+            className="tool-modal"
+            initial={{ scale: 0.8, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.8, opacity: 0, y: 20 }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="tool-modal-header">
+              <div className="tool-modal-title">
+                <span className="tool-modal-logo">{selectedTool.logo}</span>
+                <div>
+                  <h3>{selectedTool.name}</h3>
+                  <p>{selectedTool.description}</p>
+                </div>
+              </div>
+              <button className="tool-modal-close" onClick={closeToolModal}>
+                <X size={24} />
+              </button>
+            </div>
+
+            <div className="tool-modal-content">
+              <div className="tool-content-info">
+                <div className="tool-info-card">
+                  <h4>¿Qué es {selectedTool.name}?</h4>
+                  <p>{selectedTool.description}</p>
+                  <div className="tool-features">
+                    <p>✨ Herramienta de IA avanzada</p>
+                    <p>🚀 Fácil de usar</p>
+                    <p>💡 Resultados profesionales</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="tool-modal-footer">
+              <p>Abre {selectedTool.name} en una nueva pestaña para comenzar</p>
+              <a
+                href={selectedTool.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="tool-modal-link"
+              >
+                Abrir {selectedTool.name} →
+              </a>
             </div>
           </motion.div>
         </motion.div>
