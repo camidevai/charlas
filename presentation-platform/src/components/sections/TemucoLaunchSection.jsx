@@ -290,47 +290,45 @@ const TemucoLaunchSection = () => {
 
       {/* HOY */}
       <motion.div className="section-block" variants={itemVariants}>
-        <div className="section-content achievements-section">
-          <motion.div className="achievements-image" whileHover={{ scale: 1.05 }}>
+        <div className="section-content">
+          <h2 className="section-title">Lo que construí</h2>
+          <motion.div className="achievements-image-centered" whileHover={{ scale: 1.05 }}>
             <img
               src="https://subir-imagen.com/images/2025/09/08/imagef421f792d6833770.md.png"
               alt="Camila - Lo que construí"
             />
           </motion.div>
-          <div className="achievements-content">
-            <h2 className="section-title">Lo que construí</h2>
-            <div className="achievements-grid">
-              <motion.div className="achievement-card" whileHover={{ y: -5 }}>
-                <div className="achievement-icon">🎓</div>
-                <h3>Ingeniera en Informática</h3>
-                <p>Con mención en Cyberseguridad</p>
-              </motion.div>
-              <motion.div className="achievement-card" whileHover={{ y: -5 }}>
-                <div className="achievement-icon">🚀</div>
-                <h3>CEO y Fundadora</h3>
-                <p>de Informatik‑AI</p>
-              </motion.div>
-              <motion.div className="achievement-card" whileHover={{ y: -5 }}>
-                <div className="achievement-icon">🤖</div>
-                <h3>Posgrado en IA</h3>
-                <p>Inteligencia Artificial Generativa</p>
-              </motion.div>
-              <motion.div className="achievement-card" whileHover={{ y: -5 }}>
-                <div className="achievement-icon">📱</div>
-                <h3>Creadora de Contenido</h3>
-                <p>en Redes Sociales</p>
-              </motion.div>
-              <motion.div className="achievement-card" whileHover={{ y: -5 }}>
-                <div className="achievement-icon">✅</div>
-                <h3>Certificadora Acreditada</h3>
-                <p>ChileValora en Ciberseguridad e IA</p>
-              </motion.div>
-              <motion.div className="achievement-card" whileHover={{ y: -5 }}>
-                <div className="achievement-icon">🤝</div>
-                <h3>Socia y Embajadora</h3>
-                <p>Cámara Chilena de Inteligencia Artificial</p>
-              </motion.div>
-            </div>
+          <div className="achievements-grid-3col">
+            <motion.div className="achievement-card" whileHover={{ y: -5 }}>
+              <div className="achievement-icon">🎓</div>
+              <h3>Ingeniera en Informática</h3>
+              <p>Con mención en Cyberseguridad</p>
+            </motion.div>
+            <motion.div className="achievement-card" whileHover={{ y: -5 }}>
+              <div className="achievement-icon">🚀</div>
+              <h3>CEO y Fundadora</h3>
+              <p>de Informatik‑AI</p>
+            </motion.div>
+            <motion.div className="achievement-card" whileHover={{ y: -5 }}>
+              <div className="achievement-icon">🤖</div>
+              <h3>Posgrado en IA</h3>
+              <p>Inteligencia Artificial Generativa</p>
+            </motion.div>
+            <motion.div className="achievement-card" whileHover={{ y: -5 }}>
+              <div className="achievement-icon">📱</div>
+              <h3>Creadora de Contenido</h3>
+              <p>en Redes Sociales</p>
+            </motion.div>
+            <motion.div className="achievement-card" whileHover={{ y: -5 }}>
+              <div className="achievement-icon">✅</div>
+              <h3>Certificadora Acreditada</h3>
+              <p>ChileValora en Ciberseguridad e IA</p>
+            </motion.div>
+            <motion.div className="achievement-card" whileHover={{ y: -5 }}>
+              <div className="achievement-icon">🤝</div>
+              <h3>Socia y Embajadora</h3>
+              <p>Cámara Chilena de Inteligencia Artificial</p>
+            </motion.div>
           </div>
         </div>
       </motion.div>
