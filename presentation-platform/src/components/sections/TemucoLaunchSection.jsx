@@ -333,6 +333,8 @@ const TemucoLaunchSection = () => {
           <h2 className="section-title">Lo que construí</h2>
 
           <motion.div className="community-visual" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+            <h3 className="community-title">Lo más importante que construí</h3>
+
             <div className="community-image-container">
               <img
                 src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop"
@@ -341,41 +343,39 @@ const TemucoLaunchSection = () => {
               />
             </div>
 
-            <div className="community-keywords">
-              <h3>Lo más importante que construí</h3>
-              <div className="keywords-grid">
-                <motion.div className="keyword-tag" whileHover={{ scale: 1.1 }}>
-                  <span className="keyword-icon">👥</span>
-                  <span className="keyword-text">Comunidad</span>
-                </motion.div>
-                <motion.div className="keyword-tag" whileHover={{ scale: 1.1 }}>
-                  <span className="keyword-icon">🚀</span>
-                  <span className="keyword-text">Transformación</span>
-                </motion.div>
-                <motion.div className="keyword-tag" whileHover={{ scale: 1.1 }}>
-                  <span className="keyword-icon">🤖</span>
-                  <span className="keyword-text">IA</span>
-                </motion.div>
-                <motion.div className="keyword-tag" whileHover={{ scale: 1.1 }}>
-                  <span className="keyword-icon">💡</span>
-                  <span className="keyword-text">Aprendizaje</span>
-                </motion.div>
-                <motion.div className="keyword-tag" whileHover={{ scale: 1.1 }}>
-                  <span className="keyword-icon">🌟</span>
-                  <span className="keyword-text">Futuro Digital</span>
-                </motion.div>
-                <motion.div className="keyword-tag" whileHover={{ scale: 1.1 }}>
-                  <span className="keyword-icon">💪</span>
-                  <span className="keyword-text">Atrevimiento</span>
-                </motion.div>
-              </div>
+            <div className="keywords-grid-3col">
+              <motion.div className="keyword-tag" whileHover={{ scale: 1.1 }}>
+                <span className="keyword-icon">👥</span>
+                <span className="keyword-text">Personas que buscan usar tecnología</span>
+              </motion.div>
+              <motion.div className="keyword-tag" whileHover={{ scale: 1.1 }}>
+                <span className="keyword-icon">🤖</span>
+                <span className="keyword-text">Interesadas en Inteligencia Artificial</span>
+              </motion.div>
+              <motion.div className="keyword-tag" whileHover={{ scale: 1.1 }}>
+                <span className="keyword-icon">💡</span>
+                <span className="keyword-text">Apasionadas por aprender</span>
+              </motion.div>
+              <motion.div className="keyword-tag" whileHover={{ scale: 1.1 }}>
+                <span className="keyword-icon">🌟</span>
+                <span className="keyword-text">Que buscan un futuro mejor</span>
+              </motion.div>
+              <motion.div className="keyword-tag" whileHover={{ scale: 1.1 }}>
+                <span className="keyword-icon">🎉</span>
+                <span className="keyword-text">Que quieren entretenerse</span>
+              </motion.div>
+              <motion.div className="keyword-tag" whileHover={{ scale: 1.1 }}>
+                <span className="keyword-icon">🚀</span>
+                <span className="keyword-text">Transformando sus historias</span>
+              </motion.div>
             </div>
           </motion.div>
 
           <motion.div className="achievements-image-centered" whileHover={{ scale: 1.05 }}>
             <img
-              src="https://subir-imagen.com/images/2025/09/08/imagef421f792d6833770.md.png"
-              alt="Camila - Lo que construí"
+              src="/camidevai.jpeg"
+              alt="Comunidad de personas"
+              className="community-image"
             />
           </motion.div>
           <div className="achievements-grid-3col">
