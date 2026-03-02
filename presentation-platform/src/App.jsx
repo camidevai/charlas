@@ -9,6 +9,7 @@ import AIIntroSection from './components/sections/AIIntroSection'
 import AIPromptsSection from './components/sections/AIPromptsSection'
 import AIToolsSection from './components/sections/AIToolsSection'
 import QRSection from './components/sections/QRSection'
+import TemucoLaunchSection from './components/sections/TemucoLaunchSection'
 import './App.css'
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
   const [isPresenting, setIsPresenting] = useState(false)
 
   const sections = [
+    { id: 'temuco-launch', title: 'Lanzamiento Temuco', component: TemucoLaunchSection },
     { id: 'welcome', title: 'Bienvenida', component: WelcomeSection },
     { id: 'personal-story', title: 'Mi Historia Personal', component: PersonalStorySection },
     { id: 'ai-intro', title: 'Herramientas de IA Generativa', component: AIIntroSection },
