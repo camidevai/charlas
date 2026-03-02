@@ -194,9 +194,13 @@
 
 .milestone-item-image {
   width: 100%;
-  height: 200px;
+  height: 250px;
   overflow: hidden;
   background: #f0f0f0;
+  border-radius: 12px;
+  border: 3px solid var(--calypso-blue);
+  box-shadow: 0 10px 30px rgba(79, 195, 247, 0.15);
+  transition: all 0.3s ease;
 }
 
 .milestone-item-image img,
@@ -205,6 +209,15 @@
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.milestone-video-container {
+  background: linear-gradient(135deg, rgba(79, 195, 247, 0.05) 0%, rgba(244, 143, 177, 0.05) 100%);
+}
+
+.milestone-item:hover .milestone-item-image {
+  box-shadow: 0 15px 40px rgba(79, 195, 247, 0.25);
+  border-color: var(--pink);
 }
 
 .milestone-item-icon {
@@ -333,6 +346,27 @@
   box-shadow: 0 20px 40px rgba(244, 143, 177, 0.2);
 }
 
+.achievement-card-clickable {
+  cursor: pointer;
+  position: relative;
+}
+
+.achievement-card-clickable::after {
+  content: '→';
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  opacity: 0;
+  transition: all 0.3s ease;
+  color: var(--pink);
+}
+
+.achievement-card-clickable:hover::after {
+  opacity: 1;
+  transform: translateX(5px);
+}
+
 .achievement-icon {
   font-size: 2.5rem;
   width: 60px;
@@ -369,6 +403,59 @@
   margin-top: 2rem;
   color: #ffffff;
   font-weight: 300;
+}
+
+/* ========================================
+   TOOLS SECTION
+   ======================================== */
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.tool-card {
+  background: linear-gradient(135deg, rgba(79, 195, 247, 0.1) 0%, rgba(244, 143, 177, 0.1) 100%);
+  border: 2px solid var(--calypso-blue);
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.tool-card:hover {
+  border-color: var(--pink-dark);
+  background: linear-gradient(135deg, rgba(79, 195, 247, 0.2) 0%, rgba(244, 143, 177, 0.2) 100%);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(79, 195, 247, 0.2);
+}
+
+.tool-icon {
+  font-size: 2.5rem;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--calypso-blue) 0%, var(--pink) 100%);
+  border-radius: 50%;
+  box-shadow: 0 8px 20px rgba(79, 195, 247, 0.3);
+}
+
+.tool-card h3 {
+  font-size: 1rem;
+  margin: 0;
+  color: var(--text-accent);
+  font-weight: 600;
 }
 
 /* ========================================
@@ -583,6 +670,15 @@
   .carousel-emoji {
     font-size: 1.3rem;
   }
+
+  .milestone-item-image {
+    height: 220px;
+  }
+
+  .tools-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -647,5 +743,156 @@
     font-size: 1rem;
     line-height: 1.6;
   }
+
+  .tools-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .milestone-item-image {
+    height: 180px;
+  }
+
+  .modal-content {
+    width: 90%;
+    max-height: 80vh;
+  }
 }
 
+/* ========================================
+   MODAL STYLES
+   ======================================== */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 20px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.modal-close:hover {
+  color: var(--pink);
+  transform: scale(1.2);
+}
+
+.modal-header {
+  padding: 2rem 2rem 1rem;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(79, 195, 247, 0.1) 0%, rgba(244, 143, 177, 0.1) 100%);
+}
+
+.cchia-logo {
+  max-width: 200px;
+  height: auto;
+  object-fit: contain;
+}
+
+.modal-body {
+  padding: 2rem;
+}
+
+.modal-body h2 {
+  font-size: 1.8rem;
+  color: var(--text-accent);
+  margin: 0 0 1.5rem 0;
+  text-align: center;
+}
+
+.cchia-description {
+  margin-bottom: 2rem;
+}
+
+.cchia-description p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.cchia-description .highlight {
+  background: linear-gradient(135deg, var(--calypso-blue) 0%, var(--pink) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+}
+
+.mission-text {
+  background: linear-gradient(135deg, rgba(79, 195, 247, 0.1) 0%, rgba(244, 143, 177, 0.1) 100%);
+  border-left: 4px solid var(--calypso-blue);
+  padding: 1.5rem;
+  border-radius: 8px;
+  font-style: italic;
+}
+
+.cchia-button {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--calypso-blue) 0%, var(--pink) 100%);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(79, 195, 247, 0.3);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.cchia-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(79, 195, 247, 0.4);
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    max-width: 95%;
+  }
+
+  .modal-header {
+    padding: 1.5rem 1.5rem 1rem;
+  }
+
+  .modal-body {
+    padding: 1.5rem;
+  }
+
+  .modal-body h2 {
+    font-size: 1.5rem;
+  }
+
+  .cchia-logo {
+    max-width: 150px;
+  }
+}

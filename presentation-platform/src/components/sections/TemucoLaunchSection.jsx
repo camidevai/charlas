@@ -5,7 +5,9 @@ import './TemucoLaunchSection.css'
 
 const TemucoLaunchSection = () => {
   const [activeCarouselSlide, setActiveCarouselSlide] = useState(0)
+  const [showCchiaModal, setShowCchiaModal] = useState(false)
   const videoRef = useRef(null)
+  const milestoneVideoRefs = useRef([null, null, null])
 
   // Videos de la trayectoria profesional
   const storiesCami = [
@@ -118,6 +120,31 @@ const TemucoLaunchSection = () => {
       }
     }
   }, [activeCarouselSlide])
+
+  // Controlar auto-repetición de videos de milestone
+  useEffect(() => {
+    const videos = milestoneVideoRefs.current
+
+    const handleVideoEnd = (video) => {
+      return () => {
+        video.currentTime = 0
+        video.play().catch(error => {
+          console.log('Autoplay no permitido:', error)
+        })
+      }
+    }
+
+    videos.forEach((video) => {
+      if (video) {
+        const handler = handleVideoEnd(video)
+        video.addEventListener('ended', handler)
+
+        return () => {
+          video.removeEventListener('ended', handler)
+        }
+      }
+    })
+  }, [])
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -235,8 +262,9 @@ const TemucoLaunchSection = () => {
           <h2 className="section-title">La decisión que cambió todo</h2>
           <div className="milestone-content">
             <motion.div className="milestone-item" whileHover={{ y: -8 }}>
-              <div className="milestone-item-image">
+              <div className="milestone-item-image milestone-video-container">
                 <video
+                  ref={(el) => (milestoneVideoRefs.current[0] = el)}
                   src="/historiaJorgeyCami/decisionEstudio.mp4"
                   alt="Decidí estudiar programación"
                   controls
@@ -250,8 +278,9 @@ const TemucoLaunchSection = () => {
               <p>Decidí estudiar programación</p>
             </motion.div>
             <motion.div className="milestone-item" whileHover={{ y: -8 }}>
-              <div className="milestone-item-image">
+              <div className="milestone-item-image milestone-video-container">
                 <video
+                  ref={(el) => (milestoneVideoRefs.current[1] = el)}
                   src="/historiaJorgeyCami/nochesDeEstudio.mp4"
                   alt="Fue difícil, pero persistí"
                   controls
@@ -265,8 +294,9 @@ const TemucoLaunchSection = () => {
               <p>Fue difícil, pero persistí</p>
             </motion.div>
             <motion.div className="milestone-item" whileHover={{ y: -8 }}>
-              <div className="milestone-item-image">
+              <div className="milestone-item-image milestone-video-container">
                 <video
+                  ref={(el) => (milestoneVideoRefs.current[2] = el)}
                   src="/historiaJorgeyCami/primerGPT.mp4"
                   alt="Descubrí mi pasión"
                   controls
@@ -344,11 +374,64 @@ const TemucoLaunchSection = () => {
               <h3>Certificadora Acreditada</h3>
               <p>ChileValora en Ciberseguridad e IA</p>
             </motion.div>
-            <motion.div className="achievement-card" whileHover={{ y: -5 }}>
+            <motion.div
+              className="achievement-card achievement-card-clickable"
+              whileHover={{ y: -5 }}
+              onClick={() => setShowCchiaModal(true)}
+            >
               <div className="achievement-icon">🤝</div>
               <h3>Socia y Embajadora</h3>
               <p>Cámara Chilena de Inteligencia Artificial</p>
             </motion.div>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* MIS HERRAMIENTAS FAVORITAS */}
+      <motion.div className="section-block" variants={itemVariants}>
+        <div className="section-content">
+          <h2 className="section-title">Mis Herramientas Favoritas</h2>
+          <div className="tools-grid">
+            <motion.a href="https://chatgpt.com" target="_blank" rel="noopener noreferrer" className="tool-card" whileHover={{ y: -8, scale: 1.05 }}>
+              <div className="tool-icon">🤖</div>
+              <h3>Chat GPT</h3>
+            </motion.a>
+            <motion.a href="https://www.deepseek.com" target="_blank" rel="noopener noreferrer" className="tool-card" whileHover={{ y: -8, scale: 1.05 }}>
+              <div className="tool-icon">🧠</div>
+              <h3>Deepseek</h3>
+            </motion.a>
+            <motion.a href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" className="tool-card" whileHover={{ y: -8, scale: 1.05 }}>
+              <div className="tool-icon">✨</div>
+              <h3>Gemini</h3>
+            </motion.a>
+            <motion.a href="https://www.perplexity.ai" target="_blank" rel="noopener noreferrer" className="tool-card" whileHover={{ y: -8, scale: 1.05 }}>
+              <div className="tool-icon">🔍</div>
+              <h3>Perplexity</h3>
+            </motion.a>
+            <motion.a href="https://claude.ai" target="_blank" rel="noopener noreferrer" className="tool-card" whileHover={{ y: -8, scale: 1.05 }}>
+              <div className="tool-icon">💻</div>
+              <h3>Claude Code</h3>
+            </motion.a>
+            <motion.a href="https://www.augmentcode.com" target="_blank" rel="noopener noreferrer" className="tool-card" whileHover={{ y: -8, scale: 1.05 }}>
+              <div className="tool-icon">⚡</div>
+              <h3>Augment Code</h3>
+            </motion.a>
+            <motion.a href="https://www.apob.ai" target="_blank" rel="noopener noreferrer" className="tool-card" whileHover={{ y: -8, scale: 1.05 }}>
+              <div className="tool-icon">🎯</div>
+              <h3>Apob</h3>
+            </motion.a>
+            <motion.a href="https://invideo.io" target="_blank" rel="noopener noreferrer" className="tool-card" whileHover={{ y: -8, scale: 1.05 }}>
+              <div className="tool-icon">🎬</div>
+              <h3>InVideo</h3>
+            </motion.a>
+            <motion.a href="https://notebooklm.google.com" target="_blank" rel="noopener noreferrer" className="tool-card" whileHover={{ y: -8, scale: 1.05 }}>
+              <div className="tool-icon">📓</div>
+              <h3>NotebookLM</h3>
+            </motion.a>
+            <motion.a href="https://www.comet.com" target="_blank" rel="noopener noreferrer" className="tool-card" whileHover={{ y: -8, scale: 1.05 }}>
+              <div className="tool-icon">🌟</div>
+              <h3>Comet</h3>
+            </motion.a>
           </div>
         </div>
       </motion.div>
@@ -371,6 +454,69 @@ const TemucoLaunchSection = () => {
           Es para los que se atreven.
         </h2>
       </motion.div>
+
+      {/* MODAL CCHIA */}
+      {showCchiaModal && (
+        <motion.div
+          className="modal-overlay"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={() => setShowCchiaModal(false)}
+        >
+          <motion.div
+            className="modal-content"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.8, opacity: 0 }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="modal-close"
+              onClick={() => setShowCchiaModal(false)}
+            >
+              ✕
+            </button>
+
+            <div className="modal-header">
+              <img
+                src="/cchia/cchia.png"
+                alt="CCHIA Logo"
+                className="cchia-logo"
+              />
+            </div>
+
+            <div className="modal-body">
+              <h2>Cámara Chilena de Inteligencia Artificial</h2>
+
+              <div className="cchia-description">
+                <p>
+                  La CCHIA es una <span className="highlight">asociación gremial</span> compuesta por organizaciones y personas naturales.
+                </p>
+
+                <p>
+                  Buscamos ser un <span className="highlight">articulador entre el talento, el capital y la infraestructura</span>, fomentando la adopción de inteligencia artificial de forma <span className="highlight">ética y responsable</span>.
+                </p>
+
+                <p className="mission-text">
+                  Nuestro objetivo es impulsar el desarrollo y la adopción responsable de la IA en Chile, creando un ecosistema colaborativo donde empresas, profesionales y emprendedores puedan crecer juntos.
+                </p>
+              </div>
+
+              <motion.a
+                href="https://www.cchia.cl"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cchia-button"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Conoce más sobre CCHIA
+              </motion.a>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
     </motion.section>
   )
 }
