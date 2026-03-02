@@ -1,14 +1,35 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { ChevronDown, Zap, Heart, Code, Users, Star, ChevronLeft, ChevronRight } from 'lucide-react'
-import QRCode from 'qrcode.react'
+import QRCode from 'qrcode'
 import './TemucoLaunchSection.css'
 
 const TemucoLaunchSection = () => {
   const [activeCarouselSlide, setActiveCarouselSlide] = useState(0)
   const [showCchiaModal, setShowCchiaModal] = useState(false)
+  const [qrDataUrl, setQrDataUrl] = useState('')
   const videoRef = useRef(null)
   const milestoneVideoRefs = useRef([null, null, null])
+  const qrCanvasRef = useRef(null)
+
+  // Generar código QR cuando el componente se monta
+  useEffect(() => {
+    if (qrCanvasRef.current) {
+      QRCode.toCanvas(qrCanvasRef.current, 'https://lanzamiento-temuco.netlify.app/', {
+        errorCorrectionLevel: 'H',
+        type: 'image/jpeg',
+        quality: 0.95,
+        margin: 1,
+        width: 300,
+        color: {
+          dark: '#4FC3F7',
+          light: '#ffffff'
+        }
+      }, (error) => {
+        if (error) console.error('Error generando QR:', error)
+      })
+    }
+  }, [])
 
   // Videos de la trayectoria profesional
   const storiesCami = [
@@ -564,14 +585,7 @@ const TemucoLaunchSection = () => {
           </motion.h2>
 
           <motion.div className="qr-container" initial={{ scale: 0.8, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} transition={{ delay: 0.4, duration: 0.6 }}>
-            <QRCode
-              value="https://lanzamiento-temuco.netlify.app/"
-              size={300}
-              level="H"
-              includeMargin={true}
-              fgColor="#4FC3F7"
-              bgColor="#ffffff"
-            />
+            <canvas ref={qrCanvasRef} />
           </motion.div>
 
           <motion.p className="qr-subtitle" initial={{ y: -20, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ delay: 0.6, duration: 0.6 }}>
