@@ -276,6 +276,17 @@ const TemucoLaunchSection = () => {
       <motion.div className="section-block" variants={itemVariants}>
         <div className="section-content">
           <h2 className="section-title">Lo que construí</h2>
+
+          <motion.div className="community-message" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+            <p>
+              Pero lo más importante que construí fue una <span className="highlight-text">comunidad</span> de personas apasionadas por aprender.
+              <br />
+              <br />
+              Miles de personas que decidieron transformar sus historias a través de la tecnología.
+              Gente que se atreve a explorar, a experimentar con herramientas de IA, y a creer que el futuro digital es para todos.
+            </p>
+          </motion.div>
+
           <motion.div className="achievements-image-centered" whileHover={{ scale: 1.05 }}>
             <img
               src="https://subir-imagen.com/images/2025/09/08/imagef421f792d6833770.md.png"

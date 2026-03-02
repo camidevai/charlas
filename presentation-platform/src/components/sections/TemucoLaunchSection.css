@@ -249,6 +249,37 @@
 }
 
 /* ========================================
+   COMMUNITY MESSAGE
+   ======================================== */
+
+.community-message {
+  background: linear-gradient(135deg, rgba(79, 195, 247, 0.1) 0%, rgba(244, 143, 177, 0.1) 100%);
+  border-left: 4px solid var(--calypso-blue);
+  border-radius: 12px;
+  padding: 2.5rem;
+  margin: 2rem 0;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.community-message p {
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  line-height: 1.8;
+  margin: 0;
+  color: var(--text-accent);
+  font-weight: 300;
+  letter-spacing: 0.3px;
+}
+
+.highlight-text {
+  background: linear-gradient(135deg, var(--calypso-blue) 0%, var(--pink) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+}
+
+/* ========================================
    ACHIEVEMENTS GRID
    ======================================== */
 
@@ -503,6 +534,14 @@
     height: 250px;
   }
 
+  .community-message {
+    padding: 2rem;
+  }
+
+  .community-message p {
+    font-size: 1.1rem;
+  }
+
   .highlight-box {
     padding: 2rem;
   }
@@ -596,6 +635,16 @@
   .achievements-image-centered {
     max-width: 200px;
     height: 200px;
+  }
+
+  .community-message {
+    padding: 1.5rem;
+    border-left: 3px solid var(--calypso-blue);
+  }
+
+  .community-message p {
+    font-size: 1rem;
+    line-height: 1.6;
   }
 }
 
