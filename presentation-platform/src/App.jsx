@@ -17,12 +17,13 @@ function App() {
   const [isPresenting, setIsPresenting] = useState(false)
 
   const sections = [
-    { id: 'temuco-launch', title: 'Lanzamiento Temuco', component: TemucoLaunchSection },
-    { id: 'welcome', title: 'Bienvenida', component: WelcomeSection },
-    { id: 'personal-story', title: 'Mi Historia Personal', component: PersonalStorySection },
-    { id: 'ai-intro', title: 'Herramientas de IA Generativa', component: AIIntroSection },
-    { id: 'ai-prompts', title: 'Cómo hablarle a las IAs', component: AIPromptsSection },
-    { id: 'ai-tools', title: 'Introducción a la IA', component: AIToolsSection }
+    { id: 'temuco-launch', title: 'Lanzamiento Temuco', component: TemucoLaunchSection }
+    // Las siguientes secciones están ocultas para la presentación de Lanzamiento Temuco
+    // { id: 'welcome', title: 'Bienvenida', component: WelcomeSection },
+    // { id: 'personal-story', title: 'Mi Historia Personal', component: PersonalStorySection },
+    // { id: 'ai-intro', title: 'Herramientas de IA Generativa', component: AIIntroSection },
+    // { id: 'ai-prompts', title: 'Cómo hablarle a las IAs', component: AIPromptsSection },
+    // { id: 'ai-tools', title: 'Introducción a la IA', component: AIToolsSection }
   ]
 
   const nextSection = () => {
