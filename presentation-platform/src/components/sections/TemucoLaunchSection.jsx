@@ -31,6 +31,43 @@ const TemucoLaunchSection = () => {
     }
   }, [])
 
+  // Reproducir automáticamente y repetir videos de "La decisión que cambió todo"
+  useEffect(() => {
+    const videos = milestoneVideoRefs.current
+
+    videos.forEach((video) => {
+      if (video) {
+        // Configurar autoplay y loop
+        video.autoplay = true
+        video.loop = true
+        video.muted = true
+
+        // Intentar reproducir el video
+        const playPromise = video.play()
+        if (playPromise !== undefined) {
+          playPromise.catch((error) => {
+            console.log('Autoplay bloqueado:', error)
+          })
+        }
+
+        // Agregar listener para repetir cuando termine
+        const handleEnded = () => {
+          video.currentTime = 0
+          video.play().catch((error) => {
+            console.log('Error al reproducir:', error)
+          })
+        }
+
+        video.addEventListener('ended', handleEnded)
+
+        // Cleanup
+        return () => {
+          video.removeEventListener('ended', handleEnded)
+        }
+      }
+    })
+  }, [])
+
   // Videos de la trayectoria profesional
   const storiesCami = [
     {
@@ -291,6 +328,8 @@ const TemucoLaunchSection = () => {
                   alt="Decidí estudiar programación"
                   controls
                   muted
+                  autoPlay
+                  loop
                   className="milestone-video"
                 />
               </div>
@@ -307,6 +346,8 @@ const TemucoLaunchSection = () => {
                   alt="Fue difícil, pero persistí"
                   controls
                   muted
+                  autoPlay
+                  loop
                   className="milestone-video"
                 />
               </div>
@@ -323,6 +364,8 @@ const TemucoLaunchSection = () => {
                   alt="Descubrí mi pasión"
                   controls
                   muted
+                  autoPlay
+                  loop
                   className="milestone-video"
                 />
               </div>
