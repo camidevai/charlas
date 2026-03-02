@@ -226,31 +226,6 @@ const TemucoLaunchSection = () => {
               </span>
             </div>
           </div>
-
-          {/* Descripción adicional */}
-          <div className="story-grid">
-            <motion.div className="story-card" whileHover={{ y: -8, boxShadow: "0 20px 40px rgba(79, 195, 247, 0.2)" }}>
-              <div className="story-icon-wrapper">
-                <div className="story-icon">📍</div>
-              </div>
-              <h4>Mi primer trabajo</h4>
-              <p>Promotora en Temuco</p>
-            </motion.div>
-            <motion.div className="story-card" whileHover={{ y: -8, boxShadow: "0 20px 40px rgba(244, 143, 177, 0.2)" }}>
-              <div className="story-icon-wrapper">
-                <div className="story-icon">💻</div>
-              </div>
-              <h4>Sin cercanía con la tecnología</h4>
-              <p>Pero con muchas ganas de aprender</p>
-            </motion.div>
-            <motion.div className="story-card" whileHover={{ y: -8, boxShadow: "0 20px 40px rgba(236, 64, 122, 0.2)" }}>
-              <div className="story-icon-wrapper">
-                <div className="story-icon">🌟</div>
-              </div>
-              <h4>Muchas dudas sobre mi futuro</h4>
-              <p>Pero decidí cambiar mi historia</p>
-            </motion.div>
-          </div>
         </div>
       </motion.div>
 
