@@ -433,12 +433,13 @@
   margin-top: 0.3rem;
 }
 
-.temuco-carousel-controls {
+.temuco-carousel-controls-simple {
   display: flex;
   align-items: center;
   gap: 2rem;
   justify-content: center;
   width: 100%;
+  margin-top: 1.5rem;
 }
 
 .carousel-control-btn {
@@ -465,41 +466,12 @@
   transform: scale(0.95);
 }
 
-.temuco-carousel-indicators {
-  display: flex;
-  gap: 0.8rem;
-  justify-content: center;
-}
-
-.temuco-indicator {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: rgba(79, 195, 247, 0.3);
-  border: 2px solid var(--calypso-blue);
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.temuco-indicator.active {
-  background: var(--calypso-blue);
-  transform: scale(1.3);
-  box-shadow: 0 0 15px rgba(79, 195, 247, 0.5);
-}
-
-.temuco-indicator:hover {
-  background: var(--calypso-blue-light);
-  transform: scale(1.2);
-}
-
-.temuco-carousel-progress {
-  text-align: center;
-}
-
-.progress-text {
-  font-size: 0.95rem;
+.carousel-progress-text {
+  font-size: 1rem;
   color: var(--text-secondary);
   font-weight: 500;
+  min-width: 60px;
+  text-align: center;
 }
 
 /* ========================================
@@ -551,7 +523,7 @@
     aspect-ratio: 9/16;
   }
 
-  .temuco-carousel-controls {
+  .temuco-carousel-controls-simple {
     gap: 1.5rem;
   }
 
@@ -583,7 +555,7 @@
     aspect-ratio: 9/16;
   }
 
-  .temuco-carousel-controls {
+  .temuco-carousel-controls-simple {
     gap: 1rem;
   }
 
@@ -613,13 +585,8 @@
     font-size: 1.2rem;
   }
 
-  .temuco-indicator {
-    width: 10px;
-    height: 10px;
-  }
-
-  .progress-text {
-    font-size: 0.85rem;
+  .carousel-progress-text {
+    font-size: 0.9rem;
   }
 
   .achievements-grid-3col {

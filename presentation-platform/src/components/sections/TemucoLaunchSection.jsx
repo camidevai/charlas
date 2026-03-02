@@ -186,7 +186,7 @@ const TemucoLaunchSection = () => {
             </motion.div>
 
             {/* Controles del carrusel */}
-            <div className="temuco-carousel-controls">
+            <div className="temuco-carousel-controls-simple">
               <motion.button
                 className="carousel-control-btn prev"
                 onClick={prevSlide}
@@ -196,18 +196,9 @@ const TemucoLaunchSection = () => {
                 <ChevronLeft size={24} />
               </motion.button>
 
-              {/* Indicadores */}
-              <div className="temuco-carousel-indicators">
-                {storiesCami.map((_, index) => (
-                  <motion.button
-                    key={index}
-                    className={`temuco-indicator ${activeCarouselSlide === index ? 'active' : ''}`}
-                    onClick={() => setActiveCarouselSlide(index)}
-                    whileHover={{ scale: 1.2 }}
-                    whileTap={{ scale: 0.9 }}
-                  />
-                ))}
-              </div>
+              <span className="carousel-progress-text">
+                {activeCarouselSlide + 1} / {storiesCami.length}
+              </span>
 
               <motion.button
                 className="carousel-control-btn next"
@@ -217,13 +208,6 @@ const TemucoLaunchSection = () => {
               >
                 <ChevronRight size={24} />
               </motion.button>
-            </div>
-
-            {/* Progreso */}
-            <div className="temuco-carousel-progress">
-              <span className="progress-text">
-                {activeCarouselSlide + 1} de {storiesCami.length}
-              </span>
             </div>
           </div>
         </div>
