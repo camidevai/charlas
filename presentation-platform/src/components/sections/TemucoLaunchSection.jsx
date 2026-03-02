@@ -337,7 +337,7 @@ const TemucoLaunchSection = () => {
 
             <div className="community-image-container">
               <img
-                src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop"
+                src="/camidevaiComunidad.png"
                 alt="Comunidad de personas"
                 className="community-image"
               />
@@ -378,13 +378,6 @@ const TemucoLaunchSection = () => {
         <div className="section-content">
           <h2 className="section-title">Me convertí en</h2>
 
-          <motion.div className="achievements-image-centered" whileHover={{ scale: 1.05 }}>
-            <img
-              src="/camidevai.jpeg"
-              alt="Camila - Mis logros"
-              className="community-image"
-            />
-          </motion.div>
           <div className="achievements-grid-3col">
             <motion.div className="achievement-card" whileHover={{ y: -5 }}>
               <div className="achievement-icon">🎓</div>
