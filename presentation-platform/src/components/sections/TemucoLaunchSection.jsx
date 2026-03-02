@@ -1,9 +1,48 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { ChevronDown, Zap, Heart, Code, Users, Star } from 'lucide-react'
+import { ChevronDown, Zap, Heart, Code, Users, Star, ChevronLeft, ChevronRight } from 'lucide-react'
 import './TemucoLaunchSection.css'
 
 const TemucoLaunchSection = () => {
+  const [activeCarouselSlide, setActiveCarouselSlide] = useState(0)
+
+  // Imágenes de la trayectoria profesional
+  const professionalStages = [
+    {
+      id: 0,
+      title: "Clínica Dental - Promotora",
+      image: "https://subir-imagen.com/images/2025/09/08/image135c799ea9b59d8f.md.png"
+    },
+    {
+      id: 1,
+      title: "Clínica Dental - Promotora",
+      image: "https://subir-imagen.com/images/2025/09/07/image2c0b457ce12251a9.md.png"
+    },
+    {
+      id: 2,
+      title: "El amor de mi vida",
+      image: "https://subir-imagen.com/images/2025/09/08/imagef421f792d6833770.md.png"
+    },
+    {
+      id: 3,
+      title: "Asistente Administrativa",
+      image: "https://subir-imagen.com/images/2025/09/08/imagee7a87037624dd322.md.png"
+    },
+    {
+      id: 4,
+      title: "Jefa de Sucursal",
+      image: "https://subir-imagen.com/images/2025/09/08/imagecff9839b549ba026.md.png"
+    }
+  ]
+
+  const nextSlide = () => {
+    setActiveCarouselSlide((prev) => (prev + 1) % professionalStages.length)
+  }
+
+  const prevSlide = () => {
+    setActiveCarouselSlide((prev) => (prev === 0 ? professionalStages.length - 1 : prev - 1))
+  }
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -50,10 +89,81 @@ const TemucoLaunchSection = () => {
         </div>
       </motion.div>
 
-      {/* MIS INICIOS */}
+      {/* MIS INICIOS - CON CARRUSEL */}
       <motion.div className="section-block" variants={itemVariants}>
         <div className="section-content">
           <h2 className="section-title">No siempre fui tecnológica</h2>
+
+          {/* Carrusel de Trayectoria Profesional */}
+          <div className="temuco-carousel-container">
+            {/* Imagen del carrusel */}
+            <motion.div className="temuco-carousel-image-container">
+              <motion.img
+                key={activeCarouselSlide}
+                src={professionalStages[activeCarouselSlide].image}
+                alt={professionalStages[activeCarouselSlide].title}
+                className="temuco-carousel-image"
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -100 }}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
+              />
+
+              {/* Información del carrusel */}
+              <motion.div
+                className="temuco-carousel-info-overlay"
+                key={`info-${activeCarouselSlide}`}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.5 }}
+              >
+                <h3>{professionalStages[activeCarouselSlide].title}</h3>
+              </motion.div>
+            </motion.div>
+
+            {/* Controles del carrusel */}
+            <div className="temuco-carousel-controls">
+              <motion.button
+                className="carousel-control-btn prev"
+                onClick={prevSlide}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <ChevronLeft size={24} />
+              </motion.button>
+
+              {/* Indicadores */}
+              <div className="temuco-carousel-indicators">
+                {professionalStages.map((_, index) => (
+                  <motion.button
+                    key={index}
+                    className={`temuco-indicator ${activeCarouselSlide === index ? 'active' : ''}`}
+                    onClick={() => setActiveCarouselSlide(index)}
+                    whileHover={{ scale: 1.2 }}
+                    whileTap={{ scale: 0.9 }}
+                  />
+                ))}
+              </div>
+
+              <motion.button
+                className="carousel-control-btn next"
+                onClick={nextSlide}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <ChevronRight size={24} />
+              </motion.button>
+            </div>
+
+            {/* Progreso */}
+            <div className="temuco-carousel-progress">
+              <span className="progress-text">
+                {activeCarouselSlide + 1} de {professionalStages.length}
+              </span>
+            </div>
+          </div>
+
+          {/* Descripción adicional */}
           <div className="story-grid">
             <div className="story-card">
               <div className="story-icon">📍</div>

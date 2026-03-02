@@ -275,6 +275,124 @@
 }
 
 /* ========================================
+   CARRUSEL DE TRAYECTORIA PROFESIONAL
+   ======================================== */
+
+.temuco-carousel-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin: 3rem 0;
+  width: 100%;
+}
+
+.temuco-carousel-image-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  aspect-ratio: 4/5;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(79, 195, 247, 0.2);
+  border: 2px solid var(--calypso-blue);
+}
+
+.temuco-carousel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.temuco-carousel-info-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
+  padding: 2rem 1.5rem 1.5rem;
+  color: white;
+  text-align: center;
+}
+
+.temuco-carousel-info-overlay h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0;
+  color: #ffffff;
+}
+
+.temuco-carousel-controls {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  justify-content: center;
+  width: 100%;
+}
+
+.carousel-control-btn {
+  background: linear-gradient(135deg, var(--calypso-blue) 0%, var(--pink) 100%);
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-soft);
+}
+
+.carousel-control-btn:hover {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-hover);
+}
+
+.carousel-control-btn:active {
+  transform: scale(0.95);
+}
+
+.temuco-carousel-indicators {
+  display: flex;
+  gap: 0.8rem;
+  justify-content: center;
+}
+
+.temuco-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(79, 195, 247, 0.3);
+  border: 2px solid var(--calypso-blue);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.temuco-indicator.active {
+  background: var(--calypso-blue);
+  transform: scale(1.3);
+  box-shadow: 0 0 15px rgba(79, 195, 247, 0.5);
+}
+
+.temuco-indicator:hover {
+  background: var(--calypso-blue-light);
+  transform: scale(1.2);
+}
+
+.temuco-carousel-progress {
+  text-align: center;
+}
+
+.progress-text {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* ========================================
    RESPONSIVE DESIGN
    ======================================== */
 
@@ -302,6 +420,67 @@
   .closing-section {
     min-height: auto;
     padding: 3rem 1.5rem;
+  }
+
+  /* Carrusel responsive */
+  .temuco-carousel-container {
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .temuco-carousel-image-container {
+    max-width: 100%;
+  }
+
+  .temuco-carousel-controls {
+    gap: 1.5rem;
+  }
+
+  .carousel-control-btn {
+    width: 45px;
+    height: 45px;
+  }
+
+  .temuco-carousel-info-overlay h3 {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .temuco-carousel-container {
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .temuco-carousel-controls {
+    gap: 1rem;
+  }
+
+  .carousel-control-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .carousel-control-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .temuco-carousel-info-overlay {
+    padding: 1.5rem 1rem 1rem;
+  }
+
+  .temuco-carousel-info-overlay h3 {
+    font-size: 1rem;
+  }
+
+  .temuco-indicator {
+    width: 10px;
+    height: 10px;
+  }
+
+  .progress-text {
+    font-size: 0.85rem;
   }
 }
 
