@@ -91,15 +91,31 @@ const TemucoLaunchSection = () => {
     setActiveCarouselSlide((prev) => (prev === 0 ? storiesCami.length - 1 : prev - 1))
   }
 
-  // Controlar autoplay del video
+  // Controlar autoplay del video y auto-repetición
   useEffect(() => {
-    if (videoRef.current) {
+    const video = videoRef.current
+    if (video) {
       // Reiniciar el video desde el principio
-      videoRef.current.currentTime = 0
+      video.currentTime = 0
       // Reproducir automáticamente
-      videoRef.current.play().catch(error => {
+      video.play().catch(error => {
         console.log('Autoplay no permitido:', error)
       })
+
+      // Hacer que el video se repita automáticamente
+      const handleVideoEnd = () => {
+        video.currentTime = 0
+        video.play().catch(error => {
+          console.log('Autoplay no permitido:', error)
+        })
+      }
+
+      video.addEventListener('ended', handleVideoEnd)
+
+      // Limpiar el event listener
+      return () => {
+        video.removeEventListener('ended', handleVideoEnd)
+      }
     }
   }, [activeCarouselSlide])
 
@@ -279,7 +295,7 @@ const TemucoLaunchSection = () => {
 
           <motion.div className="community-message" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
             <p>
-              Pero lo más importante que construí fue una <span className="highlight-text">comunidad</span> de personas apasionadas por aprender.
+              Lo más importante que construí fue una <span className="highlight-text">comunidad</span> de personas apasionadas por aprender.
               <br />
               <br />
               Miles de personas que decidieron transformar sus historias a través de la tecnología.
