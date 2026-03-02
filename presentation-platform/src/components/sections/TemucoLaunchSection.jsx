@@ -6,41 +6,88 @@ import './TemucoLaunchSection.css'
 const TemucoLaunchSection = () => {
   const [activeCarouselSlide, setActiveCarouselSlide] = useState(0)
 
-  // Imágenes de la trayectoria profesional
-  const professionalStages = [
+  // Videos de la trayectoria profesional
+  const storiesCami = [
     {
-      id: 0,
-      title: "Clínica Dental - Promotora",
-      image: "https://subir-imagen.com/images/2025/09/08/image135c799ea9b59d8f.md.png"
+      year: "2013",
+      title: "¿Hace cuánto no vas al dentista?",
+      emoji: "🗂️🧢🗣️",
+      video: "/historiaJorgeyCami/captandoClientes.mp4"
     },
     {
-      id: 1,
-      title: "Clínica Dental - Promotora",
-      image: "https://subir-imagen.com/images/2025/09/07/image2c0b457ce12251a9.md.png"
+      year: "2013",
+      title: "Mi cartelito salvador",
+      emoji: "📣🪧✨",
+      video: "/historiaJorgeyCami/cartelito.mp4"
     },
     {
-      id: 2,
-      title: "El amor de mi vida",
-      image: "https://subir-imagen.com/images/2025/09/08/imagef421f792d6833770.md.png"
+      year: "2013",
+      title: "Y un día… llegó Jorge",
+      emoji: "🌸💬🍽️",
+      video: "/historiaJorgeyCami/primerEncuentro.mp4"
     },
     {
-      id: 3,
-      title: "Asistente Administrativa",
-      image: "https://subir-imagen.com/images/2025/09/08/imagee7a87037624dd322.md.png"
+      year: "2017 - 2021",
+      title: "De promotora a jefa de sucursal",
+      emoji: "📞📋🧠💼",
+      video: "/historiaJorgeyCami/jefaSucursal.mp4"
     },
     {
-      id: 4,
-      title: "Jefa de Sucursal",
-      image: "https://subir-imagen.com/images/2025/09/08/imagecff9839b549ba026.md.png"
+      year: "2016",
+      title: "¿Y si pudiera estudiar informática?",
+      emoji: "💡🧢💻👶",
+      video: "/historiaJorgeyCami/decisionEstudio.mp4"
+    },
+    {
+      year: "2018",
+      title: "Noches de café, código y cariño",
+      emoji: "☕👨‍👩‍👧‍👦💻🌙",
+      video: "/historiaJorgeyCami/nochesDeEstudio.mp4"
+    },
+    {
+      year: "2021",
+      title: "Mi primera vez en el mundo tech real",
+      emoji: "💼💻☕📚",
+      video: "/historiaJorgeyCami/practicaEntityData.mp4"
+    },
+    {
+      year: "2022",
+      title: "Cuando Java me dio miedo",
+      emoji: "📚🧠😰💻",
+      video: "/historiaJorgeyCami/desafioJava.mp4"
+    },
+    {
+      year: "2022",
+      title: "Me grababa para explicarme lo que estaba aprendiendo",
+      emoji: "🎥📱👩‍💻💬",
+      video: "/historiaJorgeyCami/primerosVideos.mp4"
+    },
+    {
+      year: "2022",
+      title: "¡Guau! Tengo 10.000 seguidores",
+      emoji: "📈🎤📚❤️",
+      video: "/historiaJorgeyCami/seguidores10k.mp4"
+    },
+    {
+      year: "2022",
+      title: "Lavando loza, descubrí la Inteligencia Artificial",
+      emoji: "🍽️🎧🤯🤖",
+      video: "/historiaJorgeyCami/descubrimientoIA.mp4"
+    },
+    {
+      year: "2023",
+      title: "Mi primer GPT... y mis rrss explotaron",
+      emoji: "🧠📱🤖🚀",
+      video: "/historiaJorgeyCami/primerGPT.mp4"
     }
   ]
 
   const nextSlide = () => {
-    setActiveCarouselSlide((prev) => (prev + 1) % professionalStages.length)
+    setActiveCarouselSlide((prev) => (prev + 1) % storiesCami.length)
   }
 
   const prevSlide = () => {
-    setActiveCarouselSlide((prev) => (prev === 0 ? professionalStages.length - 1 : prev - 1))
+    setActiveCarouselSlide((prev) => (prev === 0 ? storiesCami.length - 1 : prev - 1))
   }
 
   const containerVariants = {
@@ -94,15 +141,17 @@ const TemucoLaunchSection = () => {
         <div className="section-content">
           <h2 className="section-title">No siempre fui tecnológica</h2>
 
-          {/* Carrusel de Trayectoria Profesional */}
+          {/* Carrusel de Trayectoria Profesional con Videos */}
           <div className="temuco-carousel-container">
-            {/* Imagen del carrusel */}
-            <motion.div className="temuco-carousel-image-container">
-              <motion.img
+            {/* Video del carrusel */}
+            <motion.div className="temuco-carousel-video-container">
+              <motion.video
                 key={activeCarouselSlide}
-                src={professionalStages[activeCarouselSlide].image}
-                alt={professionalStages[activeCarouselSlide].title}
-                className="temuco-carousel-image"
+                src={storiesCami[activeCarouselSlide].video}
+                className="temuco-carousel-video"
+                controls
+                autoPlay
+                muted
                 initial={{ opacity: 0, x: 100 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -100 }}
@@ -117,7 +166,9 @@ const TemucoLaunchSection = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.5 }}
               >
-                <h3>{professionalStages[activeCarouselSlide].title}</h3>
+                <div className="carousel-year">{storiesCami[activeCarouselSlide].year}</div>
+                <h3>{storiesCami[activeCarouselSlide].title}</h3>
+                <div className="carousel-emoji">{storiesCami[activeCarouselSlide].emoji}</div>
               </motion.div>
             </motion.div>
 
@@ -134,7 +185,7 @@ const TemucoLaunchSection = () => {
 
               {/* Indicadores */}
               <div className="temuco-carousel-indicators">
-                {professionalStages.map((_, index) => (
+                {storiesCami.map((_, index) => (
                   <motion.button
                     key={index}
                     className={`temuco-indicator ${activeCarouselSlide === index ? 'active' : ''}`}
@@ -158,7 +209,7 @@ const TemucoLaunchSection = () => {
             {/* Progreso */}
             <div className="temuco-carousel-progress">
               <span className="progress-text">
-                {activeCarouselSlide + 1} de {professionalStages.length}
+                {activeCarouselSlide + 1} de {storiesCami.length}
               </span>
             </div>
           </div>
