@@ -236,9 +236,12 @@ const TemucoLaunchSection = () => {
           <div className="milestone-content">
             <motion.div className="milestone-item" whileHover={{ y: -8 }}>
               <div className="milestone-item-image">
-                <img
-                  src="https://subir-imagen.com/images/2025/09/08/imagef421f792d6833770.md.png"
+                <video
+                  src="/historiaJorgeyCami/decisionEstudio.mp4"
                   alt="Decidí estudiar programación"
+                  controls
+                  muted
+                  className="milestone-video"
                 />
               </div>
               <div className="milestone-item-icon">
@@ -248,9 +251,12 @@ const TemucoLaunchSection = () => {
             </motion.div>
             <motion.div className="milestone-item" whileHover={{ y: -8 }}>
               <div className="milestone-item-image">
-                <img
-                  src="https://subir-imagen.com/images/2025/09/08/imagef421f792d6833770.md.png"
+                <video
+                  src="/historiaJorgeyCami/nochesDeEstudio.mp4"
                   alt="Fue difícil, pero persistí"
+                  controls
+                  muted
+                  className="milestone-video"
                 />
               </div>
               <div className="milestone-item-icon">
@@ -260,9 +266,12 @@ const TemucoLaunchSection = () => {
             </motion.div>
             <motion.div className="milestone-item" whileHover={{ y: -8 }}>
               <div className="milestone-item-image">
-                <img
-                  src="https://subir-imagen.com/images/2025/09/08/imagef421f792d6833770.md.png"
+                <video
+                  src="/historiaJorgeyCami/primerGPT.mp4"
                   alt="Descubrí mi pasión"
+                  controls
+                  muted
+                  className="milestone-video"
                 />
               </div>
               <div className="milestone-item-icon">
@@ -317,7 +326,7 @@ const TemucoLaunchSection = () => {
             </motion.div>
             <motion.div className="achievement-card" whileHover={{ y: -5 }}>
               <div className="achievement-icon">🚀</div>
-              <h3>CEO y Fundadora</h3>
+              <h3>CMO y Fundadora</h3>
               <p>de Informatik‑AI</p>
             </motion.div>
             <motion.div className="achievement-card" whileHover={{ y: -5 }}>

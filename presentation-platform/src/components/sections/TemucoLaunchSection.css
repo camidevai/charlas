@@ -199,7 +199,8 @@
   background: #f0f0f0;
 }
 
-.milestone-item-image img {
+.milestone-item-image img,
+.milestone-video {
   width: 100%;
   height: 100%;
   object-fit: cover;
