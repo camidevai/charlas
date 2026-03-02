@@ -256,30 +256,46 @@ const TemucoLaunchSection = () => {
 
       {/* EL PUNTO DE QUIEBRE */}
       <motion.div className="section-block accent" variants={itemVariants}>
-        <div className="section-content milestone-section">
-          <div className="milestone-text">
-            <h2 className="section-title">La decisión que cambió todo</h2>
-            <div className="milestone-content">
-              <div className="milestone-item">
-                <Code size={40} />
-                <p>Decidí estudiar programación</p>
+        <div className="section-content">
+          <h2 className="section-title">La decisión que cambió todo</h2>
+          <div className="milestone-content">
+            <motion.div className="milestone-item" whileHover={{ y: -8 }}>
+              <div className="milestone-item-image">
+                <img
+                  src="https://subir-imagen.com/images/2025/09/08/imagef421f792d6833770.md.png"
+                  alt="Decidí estudiar programación"
+                />
               </div>
-              <div className="milestone-item">
-                <Zap size={40} />
-                <p>Fue difícil, pero persistí</p>
+              <div className="milestone-item-icon">
+                <Code size={32} />
               </div>
-              <div className="milestone-item">
-                <Heart size={40} />
-                <p>Descubrí mi pasión</p>
+              <p>Decidí estudiar programación</p>
+            </motion.div>
+            <motion.div className="milestone-item" whileHover={{ y: -8 }}>
+              <div className="milestone-item-image">
+                <img
+                  src="https://subir-imagen.com/images/2025/09/08/imagef421f792d6833770.md.png"
+                  alt="Fue difícil, pero persistí"
+                />
               </div>
-            </div>
+              <div className="milestone-item-icon">
+                <Zap size={32} />
+              </div>
+              <p>Fue difícil, pero persistí</p>
+            </motion.div>
+            <motion.div className="milestone-item" whileHover={{ y: -8 }}>
+              <div className="milestone-item-image">
+                <img
+                  src="https://subir-imagen.com/images/2025/09/08/imagef421f792d6833770.md.png"
+                  alt="Descubrí mi pasión"
+                />
+              </div>
+              <div className="milestone-item-icon">
+                <Heart size={32} />
+              </div>
+              <p>Descubrí mi pasión</p>
+            </motion.div>
           </div>
-          <motion.div className="milestone-image" whileHover={{ scale: 1.05 }}>
-            <img
-              src="https://subir-imagen.com/images/2025/09/08/imagef421f792d6833770.md.png"
-              alt="Camila - La decisión que cambió todo"
-            />
-          </motion.div>
         </div>
       </motion.div>
 

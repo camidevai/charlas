@@ -165,20 +165,9 @@
    MILESTONE CONTENT
    ======================================== */
 
-.milestone-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
-}
-
-.milestone-text {
-  flex: 1;
-}
-
 .milestone-content {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
 }
@@ -188,44 +177,54 @@
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  padding: 2rem;
-  background: rgba(79, 195, 247, 0.1);
+  padding: 0;
+  background: rgba(255, 255, 255, 0.7);
   border-radius: 16px;
   border: 2px solid var(--calypso-blue);
   box-shadow: var(--shadow-soft);
   transition: all 0.3s ease;
+  overflow: hidden;
 }
 
 .milestone-item:hover {
-  background: rgba(79, 195, 247, 0.2);
-  transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(79, 195, 247, 0.2);
+  background: rgba(255, 255, 255, 0.8);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(79, 195, 247, 0.2);
 }
 
-.milestone-item svg {
-  color: var(--calypso-blue-dark);
-}
-
-.milestone-item p {
-  font-size: 1.1rem;
-  text-align: center;
-  margin: 0;
-  color: var(--text-secondary);
-}
-
-.milestone-image {
-  flex: 1;
-  border-radius: 20px;
+.milestone-item-image {
+  width: 100%;
+  height: 200px;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(79, 195, 247, 0.3);
-  border: 2px solid var(--calypso-blue);
+  background: #f0f0f0;
 }
 
-.milestone-image img {
+.milestone-item-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.milestone-item-icon {
+  padding-top: 1.5rem;
+  color: var(--calypso-blue-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.milestone-item-icon svg {
+  color: var(--calypso-blue-dark);
+}
+
+.milestone-item p {
+  font-size: 1rem;
+  text-align: center;
+  margin: 0;
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
 }
 
 /* ========================================
@@ -531,7 +530,6 @@
     grid-template-columns: 1fr;
   }
 
-  .milestone-section,
   .achievements-section {
     grid-template-columns: 1fr;
     gap: 2rem;
