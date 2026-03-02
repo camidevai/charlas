@@ -109,30 +109,53 @@
 }
 
 .story-card {
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.7);
   border: 2px solid var(--calypso-blue);
-  border-radius: 16px;
-  padding: 2rem;
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
   text-align: center;
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
   box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
 .story-card:hover {
   border-color: var(--pink-dark);
-  background: rgba(244, 143, 177, 0.1);
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-hover);
+  background: rgba(244, 143, 177, 0.15);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(79, 195, 247, 0.2);
+}
+
+.story-icon-wrapper {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--calypso-blue) 0%, var(--pink) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(79, 195, 247, 0.3);
 }
 
 .story-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+.story-card h4 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--text-accent);
+  line-height: 1.3;
 }
 
 .story-card p {
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   margin: 0;
   line-height: 1.5;
   color: var(--text-secondary);
@@ -141,6 +164,17 @@
 /* ========================================
    MILESTONE CONTENT
    ======================================== */
+
+.milestone-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.milestone-text {
+  flex: 1;
+}
 
 .milestone-content {
   display: grid;
@@ -159,6 +193,13 @@
   border-radius: 16px;
   border: 2px solid var(--calypso-blue);
   box-shadow: var(--shadow-soft);
+  transition: all 0.3s ease;
+}
+
+.milestone-item:hover {
+  background: rgba(79, 195, 247, 0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(79, 195, 247, 0.2);
 }
 
 .milestone-item svg {
@@ -170,6 +211,21 @@
   text-align: center;
   margin: 0;
   color: var(--text-secondary);
+}
+
+.milestone-image {
+  flex: 1;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(79, 195, 247, 0.3);
+  border: 2px solid var(--calypso-blue);
+}
+
+.milestone-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 /* ========================================
@@ -197,6 +253,34 @@
    ACHIEVEMENTS GRID
    ======================================== */
 
+.achievements-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: flex-start;
+}
+
+.achievements-image {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(79, 195, 247, 0.3);
+  border: 2px solid var(--calypso-blue);
+  height: fit-content;
+  position: sticky;
+  top: 2rem;
+}
+
+.achievements-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.achievements-content {
+  flex: 1;
+}
+
 .achievements-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -205,7 +289,7 @@
 }
 
 .achievement-card {
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.7);
   border: 2px solid var(--calypso-blue);
   border-radius: 16px;
   padding: 2rem;
@@ -220,19 +304,34 @@
 
 .achievement-card:hover {
   border-color: var(--pink-dark);
-  background: rgba(244, 143, 177, 0.1);
+  background: rgba(244, 143, 177, 0.15);
   transform: translateY(-8px);
-  box-shadow: var(--shadow-hover);
+  box-shadow: 0 20px 40px rgba(244, 143, 177, 0.2);
 }
 
-.achievement-card svg {
-  color: var(--calypso-blue-dark);
+.achievement-icon {
+  font-size: 2.5rem;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--calypso-blue) 0%, var(--pink) 100%);
+  border-radius: 50%;
+  box-shadow: 0 8px 20px rgba(79, 195, 247, 0.3);
 }
 
 .achievement-card h3 {
   font-size: 1.1rem;
   margin: 0;
   color: var(--text-accent);
+  line-height: 1.4;
+}
+
+.achievement-card p {
+  font-size: 0.9rem;
+  margin: 0;
+  color: var(--text-secondary);
   line-height: 1.4;
 }
 
@@ -430,6 +529,17 @@
   .milestone-content,
   .achievements-grid {
     grid-template-columns: 1fr;
+  }
+
+  .milestone-section,
+  .achievements-section {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .achievements-image {
+    position: static;
+    max-width: 100%;
   }
 
   .highlight-box {

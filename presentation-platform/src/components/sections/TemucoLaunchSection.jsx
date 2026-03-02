@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { ChevronDown, Zap, Heart, Code, Users, Star, ChevronLeft, ChevronRight } from 'lucide-react'
 import './TemucoLaunchSection.css'
 
 const TemucoLaunchSection = () => {
   const [activeCarouselSlide, setActiveCarouselSlide] = useState(0)
+  const videoRef = useRef(null)
 
   // Videos de la trayectoria profesional
   const storiesCami = [
@@ -90,6 +91,18 @@ const TemucoLaunchSection = () => {
     setActiveCarouselSlide((prev) => (prev === 0 ? storiesCami.length - 1 : prev - 1))
   }
 
+  // Controlar autoplay del video
+  useEffect(() => {
+    if (videoRef.current) {
+      // Reiniciar el video desde el principio
+      videoRef.current.currentTime = 0
+      // Reproducir automáticamente
+      videoRef.current.play().catch(error => {
+        console.log('Autoplay no permitido:', error)
+      })
+    }
+  }, [activeCarouselSlide])
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -146,11 +159,11 @@ const TemucoLaunchSection = () => {
             {/* Video del carrusel */}
             <motion.div className="temuco-carousel-video-container">
               <motion.video
+                ref={videoRef}
                 key={activeCarouselSlide}
                 src={storiesCami[activeCarouselSlide].video}
                 className="temuco-carousel-video"
                 controls
-                autoPlay
                 muted
                 initial={{ opacity: 0, x: 100 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -216,40 +229,57 @@ const TemucoLaunchSection = () => {
 
           {/* Descripción adicional */}
           <div className="story-grid">
-            <div className="story-card">
-              <div className="story-icon">📍</div>
-              <p>Primer trabajo como promotora en Temuco</p>
-            </div>
-            <div className="story-card">
-              <div className="story-icon">🚫</div>
-              <p>Sin cercanía con la tecnología</p>
-            </div>
-            <div className="story-card">
-              <div className="story-icon">❓</div>
-              <p>Muchas dudas sobre mi futuro</p>
-            </div>
+            <motion.div className="story-card" whileHover={{ y: -8, boxShadow: "0 20px 40px rgba(79, 195, 247, 0.2)" }}>
+              <div className="story-icon-wrapper">
+                <div className="story-icon">📍</div>
+              </div>
+              <h4>Mi primer trabajo</h4>
+              <p>Promotora en Temuco</p>
+            </motion.div>
+            <motion.div className="story-card" whileHover={{ y: -8, boxShadow: "0 20px 40px rgba(244, 143, 177, 0.2)" }}>
+              <div className="story-icon-wrapper">
+                <div className="story-icon">💻</div>
+              </div>
+              <h4>Sin cercanía con la tecnología</h4>
+              <p>Pero con muchas ganas de aprender</p>
+            </motion.div>
+            <motion.div className="story-card" whileHover={{ y: -8, boxShadow: "0 20px 40px rgba(236, 64, 122, 0.2)" }}>
+              <div className="story-icon-wrapper">
+                <div className="story-icon">🌟</div>
+              </div>
+              <h4>Muchas dudas sobre mi futuro</h4>
+              <p>Pero decidí cambiar mi historia</p>
+            </motion.div>
           </div>
         </div>
       </motion.div>
 
       {/* EL PUNTO DE QUIEBRE */}
       <motion.div className="section-block accent" variants={itemVariants}>
-        <div className="section-content">
-          <h2 className="section-title">La decisión que cambió todo</h2>
-          <div className="milestone-content">
-            <div className="milestone-item">
-              <Code size={40} />
-              <p>Decidí estudiar programación</p>
-            </div>
-            <div className="milestone-item">
-              <Zap size={40} />
-              <p>Fue difícil, pero persistí</p>
-            </div>
-            <div className="milestone-item">
-              <Heart size={40} />
-              <p>Descubrí mi pasión</p>
+        <div className="section-content milestone-section">
+          <div className="milestone-text">
+            <h2 className="section-title">La decisión que cambió todo</h2>
+            <div className="milestone-content">
+              <div className="milestone-item">
+                <Code size={40} />
+                <p>Decidí estudiar programación</p>
+              </div>
+              <div className="milestone-item">
+                <Zap size={40} />
+                <p>Fue difícil, pero persistí</p>
+              </div>
+              <div className="milestone-item">
+                <Heart size={40} />
+                <p>Descubrí mi pasión</p>
+              </div>
             </div>
           </div>
+          <motion.div className="milestone-image" whileHover={{ scale: 1.05 }}>
+            <img
+              src="https://subir-imagen.com/images/2025/09/08/imagef421f792d6833770.md.png"
+              alt="Camila - La decisión que cambió todo"
+            />
+          </motion.div>
         </div>
       </motion.div>
 
@@ -269,24 +299,46 @@ const TemucoLaunchSection = () => {
 
       {/* HOY */}
       <motion.div className="section-block" variants={itemVariants}>
-        <div className="section-content">
-          <h2 className="section-title">Lo que construí</h2>
-          <div className="achievements-grid">
-            <div className="achievement-card">
-              <Star size={32} />
-              <h3>Ingeniera en Informática</h3>
-            </div>
-            <div className="achievement-card">
-              <Code size={32} />
-              <h3>Fundadora de empresa de desarrollo</h3>
-            </div>
-            <div className="achievement-card">
-              <Users size={32} />
-              <h3>+450.000 personas aprenden conmigo</h3>
-            </div>
-            <div className="achievement-card">
-              <Zap size={32} />
-              <h3>Trabajo con IA generativa</h3>
+        <div className="section-content achievements-section">
+          <motion.div className="achievements-image" whileHover={{ scale: 1.05 }}>
+            <img
+              src="https://subir-imagen.com/images/2025/09/08/imagef421f792d6833770.md.png"
+              alt="Camila - Lo que construí"
+            />
+          </motion.div>
+          <div className="achievements-content">
+            <h2 className="section-title">Lo que construí</h2>
+            <div className="achievements-grid">
+              <motion.div className="achievement-card" whileHover={{ y: -5 }}>
+                <div className="achievement-icon">🎓</div>
+                <h3>Ingeniera en Informática</h3>
+                <p>Con mención en Cyberseguridad</p>
+              </motion.div>
+              <motion.div className="achievement-card" whileHover={{ y: -5 }}>
+                <div className="achievement-icon">🚀</div>
+                <h3>CEO y Fundadora</h3>
+                <p>de Informatik‑AI</p>
+              </motion.div>
+              <motion.div className="achievement-card" whileHover={{ y: -5 }}>
+                <div className="achievement-icon">🤖</div>
+                <h3>Posgrado en IA</h3>
+                <p>Inteligencia Artificial Generativa</p>
+              </motion.div>
+              <motion.div className="achievement-card" whileHover={{ y: -5 }}>
+                <div className="achievement-icon">📱</div>
+                <h3>Creadora de Contenido</h3>
+                <p>en Redes Sociales</p>
+              </motion.div>
+              <motion.div className="achievement-card" whileHover={{ y: -5 }}>
+                <div className="achievement-icon">✅</div>
+                <h3>Certificadora Acreditada</h3>
+                <p>ChileValora en Ciberseguridad e IA</p>
+              </motion.div>
+              <motion.div className="achievement-card" whileHover={{ y: -5 }}>
+                <div className="achievement-icon">🤝</div>
+                <h3>Socia y Embajadora</h3>
+                <p>Cámara Chilena de Inteligencia Artificial</p>
+              </motion.div>
             </div>
           </div>
         </div>
