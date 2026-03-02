@@ -370,11 +370,18 @@ const TemucoLaunchSection = () => {
               </motion.div>
             </div>
           </motion.div>
+        </div>
+      </motion.div>
+
+      {/* MIS LOGROS */}
+      <motion.div className="section-block" variants={itemVariants}>
+        <div className="section-content">
+          <h2 className="section-title">Me convertí en</h2>
 
           <motion.div className="achievements-image-centered" whileHover={{ scale: 1.05 }}>
             <img
               src="/camidevai.jpeg"
-              alt="Comunidad de personas"
+              alt="Camila - Mis logros"
               className="community-image"
             />
           </motion.div>
