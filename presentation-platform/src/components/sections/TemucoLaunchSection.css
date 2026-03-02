@@ -546,8 +546,8 @@
 .temuco-carousel-video-container {
   position: relative;
   width: 100%;
-  max-width: 400px;
-  aspect-ratio: 9/16;
+  max-width: 450px;
+  aspect-ratio: 1/1;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 20px 60px rgba(79, 195, 247, 0.2);
@@ -693,7 +693,7 @@
 
   .temuco-carousel-video-container {
     max-width: 100%;
-    aspect-ratio: 9/16;
+    aspect-ratio: 1/1;
   }
 
   .temuco-carousel-controls-simple {
@@ -752,7 +752,7 @@
   }
 
   .temuco-carousel-video-container {
-    aspect-ratio: 9/16;
+    aspect-ratio: 1/1;
   }
 
   .temuco-carousel-controls-simple {
