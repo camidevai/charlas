@@ -505,7 +505,7 @@ Responde SOLO con el prompt optimizado, sin explicaciones adicionales.`
         throw new Error("La clave de API de Gemini no está configurada en las variables de entorno.");
       }
 
-      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -945,7 +945,7 @@ Responde SOLO con el prompt optimizado, sin explicaciones adicionales.`
                 >
                   <div className="result-header">
                     <h4>🎉 Tu prompt optimizado está listo</h4>
-                    <p>Optimizado con Google Gemini 2.5 flash preview siguiendo la metodología {methodologyNames[slides[currentSlide].id]}</p>
+                    <p>Optimizado con Google Gemini 2.0 Flash siguiendo la metodología {methodologyNames[slides[currentSlide].id]}</p>
                   </div>
 
                   {/* Mostrar respuestas etiquetadas por metodología */}
