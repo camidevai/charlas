@@ -332,14 +332,44 @@ const TemucoLaunchSection = () => {
         <div className="section-content">
           <h2 className="section-title">Lo que construí</h2>
 
-          <motion.div className="community-message" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <p>
-              Lo más importante que construí fue una <span className="highlight-text">comunidad</span> de personas apasionadas por aprender.
-              <br />
-              <br />
-              Miles de personas que decidieron transformar sus historias a través de la tecnología.
-              Gente que se atreve a explorar, a experimentar con herramientas de IA, y a creer que el futuro digital es para todos.
-            </p>
+          <motion.div className="community-visual" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+            <div className="community-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop"
+                alt="Comunidad de personas"
+                className="community-image"
+              />
+            </div>
+
+            <div className="community-keywords">
+              <h3>Lo más importante que construí</h3>
+              <div className="keywords-grid">
+                <motion.div className="keyword-tag" whileHover={{ scale: 1.1 }}>
+                  <span className="keyword-icon">👥</span>
+                  <span className="keyword-text">Comunidad</span>
+                </motion.div>
+                <motion.div className="keyword-tag" whileHover={{ scale: 1.1 }}>
+                  <span className="keyword-icon">🚀</span>
+                  <span className="keyword-text">Transformación</span>
+                </motion.div>
+                <motion.div className="keyword-tag" whileHover={{ scale: 1.1 }}>
+                  <span className="keyword-icon">🤖</span>
+                  <span className="keyword-text">IA</span>
+                </motion.div>
+                <motion.div className="keyword-tag" whileHover={{ scale: 1.1 }}>
+                  <span className="keyword-icon">💡</span>
+                  <span className="keyword-text">Aprendizaje</span>
+                </motion.div>
+                <motion.div className="keyword-tag" whileHover={{ scale: 1.1 }}>
+                  <span className="keyword-icon">🌟</span>
+                  <span className="keyword-text">Futuro Digital</span>
+                </motion.div>
+                <motion.div className="keyword-tag" whileHover={{ scale: 1.1 }}>
+                  <span className="keyword-icon">💪</span>
+                  <span className="keyword-text">Atrevimiento</span>
+                </motion.div>
+              </div>
+            </div>
           </motion.div>
 
           <motion.div className="achievements-image-centered" whileHover={{ scale: 1.05 }}>
@@ -396,9 +426,9 @@ const TemucoLaunchSection = () => {
               <div className="tool-icon">🤖</div>
               <h3>Chat GPT</h3>
             </motion.a>
-            <motion.a href="https://www.deepseek.com" target="_blank" rel="noopener noreferrer" className="tool-card" whileHover={{ y: -8, scale: 1.05 }}>
+            <motion.a href="https://www.grok.com" target="_blank" rel="noopener noreferrer" className="tool-card" whileHover={{ y: -8, scale: 1.05 }}>
               <div className="tool-icon">🧠</div>
-              <h3>Deepseek</h3>
+              <h3>grok</h3>
             </motion.a>
             <motion.a href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" className="tool-card" whileHover={{ y: -8, scale: 1.05 }}>
               <div className="tool-icon">✨</div>
