@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { ChevronDown, Zap, Heart, Code, Users, Star, ChevronLeft, ChevronRight } from 'lucide-react'
+import QRCode from 'qrcode.react'
 import './TemucoLaunchSection.css'
 
 const TemucoLaunchSection = () => {
@@ -554,6 +555,30 @@ const TemucoLaunchSection = () => {
           </motion.div>
         </motion.div>
       )}
+
+      {/* SECCIÓN DE CIERRE CON CÓDIGO QR */}
+      <motion.div className="closing-qr-section" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 0.8 }}>
+        <div className="qr-content">
+          <motion.h2 className="qr-title" initial={{ y: 20, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ delay: 0.2, duration: 0.6 }}>
+            Conoce la historia de camidevai
+          </motion.h2>
+
+          <motion.div className="qr-container" initial={{ scale: 0.8, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} transition={{ delay: 0.4, duration: 0.6 }}>
+            <QRCode
+              value="https://lanzamiento-temuco.netlify.app/"
+              size={300}
+              level="H"
+              includeMargin={true}
+              fgColor="#4FC3F7"
+              bgColor="#ffffff"
+            />
+          </motion.div>
+
+          <motion.p className="qr-subtitle" initial={{ y: -20, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ delay: 0.6, duration: 0.6 }}>
+            https://lanzamiento-temuco.netlify.app/
+          </motion.p>
+        </div>
+      </motion.div>
     </motion.section>
   )
 }
