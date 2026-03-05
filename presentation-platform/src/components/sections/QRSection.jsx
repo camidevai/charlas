@@ -6,7 +6,7 @@ import './QRSection.css';
 
 const QRSection = () => {
   const [showQRModal, setShowQRModal] = useState(false);
-  const [isMinimized, setIsMinimized] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(true);
 
   const qrCodeUrl = "https://subir-imagen.com/images/2025/09/07/image07f1682244b477d7.png";
 
