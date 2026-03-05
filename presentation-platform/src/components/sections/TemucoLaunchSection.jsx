@@ -236,7 +236,7 @@ const TemucoLaunchSection = () => {
       <motion.div className="hero-section" variants={itemVariants}>
         <div className="hero-content">
           <h1 className="hero-title">
-            No nací siendo ingeniera.
+            Antes de ser ingeniera,
             <br />
             Mi primer trabajo fue como promotora en Temuco.
           </h1>
