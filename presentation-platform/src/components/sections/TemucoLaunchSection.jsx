@@ -510,7 +510,7 @@ const TemucoLaunchSection = () => {
               <div className="tool-icon">🔍</div>
               <h3>Perplexity</h3>
             </motion.a>
-            <motion.a href="https://claude.ai" target="_blank" rel="noopener noreferrer" className="tool-card" whileHover={{ y: -8, scale: 1.05 }}>
+            <motion.a href="https://curso-claude-code.netlify.app/" target="_blank" rel="noopener noreferrer" className="tool-card" whileHover={{ y: -8, scale: 1.05 }}>
               <div className="tool-icon">💻</div>
               <h3>Claude Code</h3>
             </motion.a>
