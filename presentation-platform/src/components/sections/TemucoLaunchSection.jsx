@@ -473,7 +473,7 @@ const TemucoLaunchSection = () => {
             </motion.div>
             <motion.div className="achievement-card" whileHover={{ y: -5 }}>
               <div className="achievement-icon">✅</div>
-              <h3>Certificadora Acreditada</h3>
+              <h3>Evaluadora Acreditada</h3>
               <p>ChileValora en Ciberseguridad e IA</p>
             </motion.div>
             <motion.div
